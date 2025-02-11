@@ -1,0 +1,55 @@
+{
+	"name": "concero-ui-vite",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"main": "dist/index.cjs.js",
+	"module": "dist/index.es.js",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/index.es.js",
+			"require": "./dist/index.cjs.js"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"dev": "vite",
+		"build": "tsc -b && vite build",
+		"lint": "eslint .",
+		"format:check": "npx prettier . --check",
+		"format:fix": "npx prettier . --write",
+		"preview": "vite preview"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.19.0",
+		"@types/css-modules": "^1.0.5",
+		"@types/node": "^22.13.1",
+		"@types/react": "18.2",
+		"@types/react-dom": "18.2",
+		"@vitejs/plugin-react": "^4.3.4",
+		"autoprefixer": "^10.4.20",
+		"eslint": "^9.19.0",
+		"eslint-plugin-react-hooks": "^5.0.0",
+		"eslint-plugin-react-refresh": "^0.4.18",
+		"globals": "^15.14.0",
+		"path": "^0.12.7",
+		"postcss": "^8.5.1",
+		"postcss-modules": "^6.0.1",
+		"precss": "^4.0.0",
+		"react": "18.2",
+		"react-dom": "18.2",
+		"typescript": "~5.7.2",
+		"typescript-eslint": "^8.22.0",
+		"typescript-plugin-css-modules": "^5.1.0",
+		"vite": "^6.1.0",
+		"vite-plugin-css-injected-by-js": "^3.5.2",
+		"vite-plugin-dts": "^4.5.0",
+		"vite-tsconfig-paths": "^5.1.4"
+	},
+	"dependencies": {
+		"prettier": "^3.5.0"
+	}
+}
