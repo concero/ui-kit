@@ -3,6 +3,8 @@
 	"private": false,
 	"version": "0.0.1",
 	"author": "kowka_vn",
+	"license": "ISC",
+
 	"publishConfig": {
 		"access": "public",
 		"registry": "https://registry.npmjs.org"

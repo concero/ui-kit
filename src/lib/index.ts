@@ -1,4 +1,3 @@
-import './assets/fonts/DM_Sans/typography-woff.css'
 import './styles/variables.pcss'
 export { Button } from './common/Button/Button'
 export { Checkbox } from './common/Checkbox/Checkbox'
