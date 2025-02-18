@@ -1,0 +1,14 @@
+:root {
+	/*Accent colors*/
+	--color-accent-25: #f5fbfe;
+	--color-accent-50: #e8f7fe;
+	--color-accent-100: #d7f0fd;
+	--color-accent-200: #a8dffa;
+	--color-accent-300: #79cef8;
+	--color-accent-400: #3ab7f5;
+	--color-accent-500: #0b9ae1;
+	--color-accent-600: #097bb3;
+	--color-accent-700: #075d87;
+	--color-accent-800: #043e5a;
+	--color-accent-900: #022232;
+}
