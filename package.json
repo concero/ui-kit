@@ -43,8 +43,7 @@
 		"format:fix": "npx prettier . --write",
 		"sb": "storybook dev -p 6006 --no-open",
 		"sb:build": "storybook build",
-		"prepare": "husky",
-		"prepublishOnly": "npm run build"
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@chromatic-com/storybook": "^3.2.4",
