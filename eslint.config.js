@@ -5,7 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-	{ ignores: ['dist', 'node_modules', 'public', '.storybook'] },
+	{ ignores: ['dist', 'node_modules', 'public', '.storybook', 'storybook-static'] },
 	{
 		ignores: ['stories_examples'],
 		extends: [js.configs.recommended, ...tseslint.configs.recommended],

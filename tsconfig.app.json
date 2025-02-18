@@ -30,7 +30,6 @@
 		"noEmit": true,
 		// "emitDeclarationOnly": true,
 		"jsx": "react-jsx",
-
 		/* Linting */
 		"strict": false, // It's better to specify explicit rules
 		"noImplicitAny": true,
@@ -45,5 +44,6 @@
 		"alwaysStrict": true,
 		"noImplicitThis": true
 	},
-	"include": ["src", "./vite.env.d.ts"]
+	"include": ["src", "./vite.env.d.ts"],
+	"exclude": ["storybook-static"]
 }

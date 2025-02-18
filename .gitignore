@@ -74,6 +74,6 @@ dist-ssr
 .stylelintcache
 .env
 .vercel
-
+storybook-static
 *storybook.log
 stories_examples
