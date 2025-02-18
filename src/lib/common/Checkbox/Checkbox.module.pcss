@@ -1,0 +1,112 @@
+$borderSize: 2px;
+$heightCheckboxLine: 20px;
+.wrap_with_label {
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+}
+.checkbox {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 24px;
+	border: 2px solid transparent;
+	transition: all 0.1s;
+	border-radius: calc(var(--space-xs) + 4px);
+	.inner {
+		border-radius: calc(var(--space-xs) + 2px);
+		width: $heightCheckboxLine;
+		height: $heightCheckboxLine;
+		border: 2px solid transparent;
+		background-color: var(--color-gray-100);
+	}
+	&:focus {
+		border-radius: calc(var(--space-xs) + 4px);
+		outline: 2px solid var(--color-accent-500);
+		& > .inner {
+			border: 2px solid var(--color-accent-600);
+		}
+	}
+	&:hover {
+		cursor: pointer;
+		.inner {
+			border-color: var(--color-accent-600);
+		}
+	}
+
+	&:active {
+		outline: none;
+		&:not(.disabled) > .inner {
+			background-color: var(--color-gray-200);
+		}
+	}
+	&.disabled {
+		pointer-events: none;
+		user-select: none;
+		.inner {
+			background-color: var(--color-gray-50);
+		}
+		&:hover {
+			cursor: default;
+		}
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&.checked {
+		border-radius: calc(var(--space-xs) + 4px);
+
+		.inner {
+			border: 2px solid var(--color-gray-100);
+			outline: 2px solid var(--color-accent-600);
+			background-color: var(--color-accent-600);
+		}
+		&:focus {
+			outline-color: var(--color-accent-500);
+			outline-offset: 2px;
+			.inner {
+				outline: 2px solid var(--color-accent-600);
+				background-color: var(--color-accent-700);
+			}
+		}
+		&:hover {
+			.inner {
+				background-color: var(--color-accent-700);
+			}
+		}
+		&:active {
+			.inner {
+				background-color: var(--color-accent-800);
+			}
+		}
+		&.disabled {
+			/* background-color: var(--color-gray-100); */
+			.inner {
+				outline: none;
+				background-color: var(--color-gray-200);
+			}
+		}
+	}
+}
+
+.inner {
+	width: 20px;
+	height: 20px;
+	transition: all 0.2s;
+}
+
+.label {
+	font: var(--font-button-medium);
+	line-height: 28px;
+	color: var(--color-gray-700);
+	&:hover {
+		cursor: pointer;
+	}
+	user-select: none;
+	&.label_disabled {
+		pointer-events: none;
+		user-select: none;
+		color: var(--color-gray-500);
+	}
+}
