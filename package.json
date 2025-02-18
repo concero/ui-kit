@@ -23,7 +23,9 @@
 		}
 	},
 	"files": [
-		"dist"
+		"dist",
+		"README.md",
+		"ForDevelopers.md"
 	],
 	"scripts": {
 		"publish": "npm publish --access=public",
