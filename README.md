@@ -26,8 +26,8 @@ Additionally, you need to import the appropriate style file depending on your pr
 #### Example:
 
 ```ts
-import 'concero-ui/styles/concero/index.css'
-import 'concero-ui/styles/lanca/index.css'
+import 'concero-ui/dist/styles/concero/index.css'
+import 'concero-ui/dist/styles/lanca/index.css'
 ```
 
 [For further instructions, refer to the Developer Documentation.](./ForDevelopers.md)
