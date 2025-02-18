@@ -22,15 +22,18 @@ npm adduser nameUserFromNpmAccount
 ```
 
 ### Regular Publishing
+
 Before publishing, remember: **you cannot publish the same version twice**.
 Always update the version before publishing.
 
-#### Example commands:
+#### Example commands to increment version:
+
 ```bash
-npm version major // for increment major  1.0.0 -> 2.0.0
-npm version minor // for increment minor  0.1.0 -> 0.2.0
-npm version patch // for increment patch  0.0.1 -> 0.0.2
+npm version major  # Increments major version: 1.0.0 → 2.0.0
+npm version minor  # Increments minor version: 0.1.0 → 0.2.0
+npm version patch  # Increments patch version: 0.0.1 → 0.0.2
 ```
+
 #### Versioning Format: `MAJOR.MINOR.PATCH`
 
 - **Major (`1.0.0`)** – Introduces breaking changes, incompatible with previous versions.
