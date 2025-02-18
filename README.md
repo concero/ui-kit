@@ -22,10 +22,15 @@ npm adduser nameUserFromNpmAccount
 ```
 
 ### Regular Publishing
-
 Before publishing, remember: **you cannot publish the same version twice**.
-Always update the version in `package.json` before running the publish command.
+Always update the version before publishing.
 
+#### Example commands:
+```bash
+npm version major // for increment major  1.0.0 -> 2.0.0
+npm version minor // for increment minor  0.1.0 -> 0.2.0
+npm version patch // for increment patch  0.0.1 -> 0.0.2
+```
 #### Versioning Format: `MAJOR.MINOR.PATCH`
 
 - **Major (`1.0.0`)** – Introduces breaking changes, incompatible with previous versions.
