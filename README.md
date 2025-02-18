@@ -11,6 +11,33 @@ npm run prepare
 
 TO ADD a NEW component, simply place it in the /src/lib/ folder and re-export it in /src/lib/index.ts.
 
+## Publish
+
+### First-time setup
+
+Log in to your npm account before publishing:
+
+```bash
+npm adduser nameUserFromNpmAccount
+```
+
+### Regular Publishing
+
+Before publishing, remember: **you cannot publish the same version twice**.
+Always update the version in `package.json` before running the publish command.
+
+#### Versioning Format: `MAJOR.MINOR.PATCH`
+
+- **Major (`1.0.0`)** – Introduces breaking changes, incompatible with previous versions.
+- **Minor (`0.1.0`)** – Adds or updates functionality while maintaining backward compatibility.
+- **Patch (`0.0.1`)** – Includes small fixes without adding new features, only improving existing ones.
+
+To publish a new version, run:
+
+```bash
+npm run publish
+```
+
 ## Core Component Principles
 
 - **Extensibility and Flexibility**: Follow the **Open-Closed Principle** from SOLID — components should be open for extension but closed for modification.

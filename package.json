@@ -1,7 +1,12 @@
 {
 	"name": "concero-ui",
-	"private": true,
+	"private": false,
 	"version": "0.0.1",
+	"author": "kowka_vn",
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org"
+	},
 	"type": "module",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.es.js",
@@ -16,6 +21,7 @@
 		"dist"
 	],
 	"scripts": {
+		"publish": "npm publish --access=public",
 		"dev": "vite",
 		"build": "vite build",
 		"lint:ts": "eslint .",
@@ -28,7 +34,8 @@
 		"format:fix": "npx prettier . --write",
 		"sb": "storybook dev -p 6006 --no-open",
 		"sb:build": "storybook build",
-		"prepare": "husky"
+		"prepare": "husky",
+		"prepublishOnly": "npm run build"
 	},
 	"devDependencies": {
 		"@chromatic-com/storybook": "^3.2.4",
@@ -77,6 +84,11 @@
 	"dependencies": {
 		"clsx": "^2.1.1"
 	},
+	"peerDependencies": {
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0"
+	},
+	"sideEffects": false,
 	"eslintConfig": {
 		"extends": [
 			"plugin:storybook/recommended"
