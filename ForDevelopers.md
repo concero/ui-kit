@@ -72,6 +72,18 @@ Always update the version before publishing.
 - **Examples**:
     - `Button`, `Checkbox` handle `aria-*` attributes, `style`, and other HTML props correctly.
 
+## Individual styles
+
+Regarding colors for two or more projects:
+
+- Colors and general CSS variables are currently stored in `src/lib/styles/variables.pcss`.
+- However, project-specific styles should be kept separately, namely in `public/styles/project/index.css`.
+
+If, in the future, different padding or warning colors are required for projects, they should be:
+
+1. Removed from `variables.pcss`.
+2. Added individually in the project's style file (`public/styles/project/index.css`).
+
 ## Editor Configuration Recommendations
 
 For a smooth development experience with this library, consider using the following VS Code settings:
