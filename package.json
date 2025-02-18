@@ -1,7 +1,7 @@
 {
-	"name": "@concero/ui",
+	"name": "concero-ui",
 	"private": true,
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"type": "module",
 	"main": "dist/index.cjs.js",
 	"module": "dist/index.es.js",
@@ -17,14 +17,30 @@
 	],
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc -b && vite build",
-		"lint": "eslint .",
+		"build": "vite build",
+		"lint:ts": "eslint .",
+		"lint:ts:fix": "eslint . --fix",
+		"lint:css": "npx stylelint \"src/**/*.{css,pcss}\"",
+		"lint:css:fix": "npx stylelint \"src/**/*.{css,pcss}\" --fix",
+		"lint": "npm run lint:ts && npm run lint:css",
+		"lint:fix": "npm run lint:ts:fix && npm run lint:css:fix",
 		"format:check": "npx prettier . --check",
 		"format:fix": "npx prettier . --write",
-		"preview": "vite preview"
+		"sb": "storybook dev -p 6006 --no-open",
+		"sb:build": "storybook build",
+		"prepare": "husky"
 	},
 	"devDependencies": {
+		"@chromatic-com/storybook": "^3.2.4",
 		"@eslint/js": "^9.19.0",
+		"@storybook/addon-essentials": "^8.5.4",
+		"@storybook/addon-interactions": "^8.5.4",
+		"@storybook/addon-onboarding": "^8.5.4",
+		"@storybook/blocks": "^8.5.4",
+		"@storybook/react": "^8.5.4",
+		"@storybook/react-vite": "^8.5.4",
+		"@storybook/test": "^8.5.4",
+		"@svgr/plugin-svgo": "^8.1.0",
 		"@types/css-modules": "^1.0.5",
 		"@types/node": "^22.13.1",
 		"@types/react": "18.2",
@@ -34,22 +50,36 @@
 		"eslint": "^9.19.0",
 		"eslint-plugin-react-hooks": "^5.0.0",
 		"eslint-plugin-react-refresh": "^0.4.18",
+		"eslint-plugin-storybook": "^0.11.2",
 		"globals": "^15.14.0",
+		"husky": "^9.1.7",
 		"path": "^0.12.7",
 		"postcss": "^8.5.1",
 		"postcss-modules": "^6.0.1",
 		"precss": "^4.0.0",
+		"prettier": "^3.5.0",
 		"react": "18.2",
 		"react-dom": "18.2",
+		"storybook": "^8.5.4",
+		"stylelint": "^14.16.1",
+		"stylelint-config-prettier": "^9.0.5",
+		"stylelint-config-recommended-scss": "^8.0.0",
 		"typescript": "~5.7.2",
 		"typescript-eslint": "^8.22.0",
 		"typescript-plugin-css-modules": "^5.1.0",
 		"vite": "^6.1.0",
 		"vite-plugin-css-injected-by-js": "^3.5.2",
 		"vite-plugin-dts": "^4.5.0",
+		"vite-plugin-stylelint": "^6.0.0",
+		"vite-plugin-svgr": "^4.3.0",
 		"vite-tsconfig-paths": "^5.1.4"
 	},
 	"dependencies": {
-		"prettier": "^3.5.0"
+		"clsx": "^2.1.1"
+	},
+	"eslintConfig": {
+		"extends": [
+			"plugin:storybook/recommended"
+		]
 	}
 }

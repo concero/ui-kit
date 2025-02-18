@@ -76,3 +76,4 @@ dist-ssr
 .vercel
 
 *storybook.log
+stories_examples

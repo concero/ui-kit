@@ -1,7 +1,5 @@
 {
 	"compilerOptions": {
-		// "declaration": true,
-		// "declarationDir": "./dist",
 		"tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
 		"target": "ES2020",
 		"useDefineForClassFields": true,
@@ -16,10 +14,14 @@
 				}
 			}
 		],
-		"typeRoots": ["node_modules/@types", "src/types"],
+		// "typeRoots": ["node_modules/@types", "src/types"],
+		"types": ["vite/client"],
 		"module": "ESNext",
 		"skipLibCheck": true,
-
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		},
 		/* Bundler mode */
 		"moduleResolution": "bundler",
 		"allowImportingTsExtensions": true,
@@ -43,5 +45,5 @@
 		"alwaysStrict": true,
 		"noImplicitThis": true
 	},
-	"include": ["src/lib", "src/types/**/*.d.ts"]
+	"include": ["src", "./vite.env.d.ts"]
 }
