@@ -57,6 +57,13 @@ Always update the version before publishing.
     ```
 5. Then, for a more canonical development process, it is recommended to go to the GitHub repository release page (https://github.com/concero/ui-kit/releases) and create a new release based on the tag. In the description, add the changes either briefly or in detail.
 
+> **ℹ️ Note:**
+> You should change the version **only if it affects the use of the library in a real project**.
+
+If we update **Storybook configs**, it won't impact projects that install the library from NPM.
+
+If the changes are **only for developers**, there's **no need to bump the version**!
+
 ## Core Component Principles
 
 - **Extensibility and Flexibility**: Follow the **Open-Closed Principle** from SOLID — components should be open for extension but closed for modification.
