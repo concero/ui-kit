@@ -43,11 +43,7 @@ Always update the version before publishing.
     npm version major  # 1.0.0 → 2.0.0
     ```
 
-3. Push changes to GitHub:
-    ```bash
-    git push --follow-tags
-    ```
-    or if you use git Ui and you need push only tags
+3. Push tags to GitHub: you need push tags
     ```bash
     git push origin --tags
     ```
