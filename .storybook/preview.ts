@@ -1,7 +1,5 @@
 import type { Preview } from '@storybook/react'
-import '../public/styles/concero/index.css'
-import '../src/lib/assets/fonts/DM_Sans/typography-woff.css'
-import '../src/lib/styles/variables.pcss'
+import { StyleDecorator } from '../src/lib/storybook/StyleDecorator'
 const preview: Preview = {
 	parameters: {
 		controls: {
@@ -11,6 +9,7 @@ const preview: Preview = {
 			},
 		},
 	},
+	decorators: [StyleDecorator],
 }
 
 export default preview
