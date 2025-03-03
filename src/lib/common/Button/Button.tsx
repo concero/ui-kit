@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode, type ComponentProps, type PropsWithChildren } from 'react'
 import cls from './Button.module.pcss'
 import clsx from 'clsx'
-import { Spinner } from '../Spinner/Spinner'
+import { Spinner, TSpinnerType } from '../Spinner/Spinner'
 import TrailArrow from '@/lib/assets/icons/monochrome/TrailArrow.svg?react'
 type TClassname = string
 export type TSize = 's' | 'm' | 'l' | 'xl'
@@ -46,7 +46,27 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 		tetrary_color: cls.tetrary_color,
 		tetrary: cls.tetrary,
 	}
-
+	let typeSpinner: TSpinnerType = 'light'
+	switch (variant) {
+		case 'primary':
+			typeSpinner = 'dark'
+			break
+		case 'secondary_color':
+			typeSpinner = 'light'
+			break
+		case 'secondary':
+			typeSpinner = 'gray'
+			break
+		case 'tetrary_color':
+			typeSpinner = 'light'
+			break
+		case 'tetrary':
+			typeSpinner = 'gray'
+			break
+		case 'danger':
+			typeSpinner = 'danger'
+			break
+	}
 	return (
 		<button
 			ref={ref}
@@ -64,11 +84,11 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 			{...otherProps}
 		>
 			{!isLoading && leftIcon}
-			<span className={cls.inner_content}>{isLoading ? <Spinner /> : children}</span>
+			<span className={cls.inner_content}>{isLoading ? <Spinner type={typeSpinner} /> : children}</span>
 			{!isLoading && rightIcon}
 			{showTrailIcon && (
-				<span className={cls.trail_icon}>
-					<TrailArrow />
+				<span className={cls.trail_icon_wrap}>
+					<TrailArrow className={cls.trail_icon} />
 				</span>
 			)}
 		</button>

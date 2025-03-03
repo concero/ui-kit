@@ -1,7 +1,7 @@
 import { forwardRef, type ComponentProps, type PropsWithChildren } from 'react'
 import cls from './IconButton.module.pcss'
 import clsx from 'clsx'
-import { Spinner } from '../Spinner/Spinner'
+import { Spinner, TSpinnerType } from '../Spinner/Spinner'
 
 type TClassname = string
 export type TSize = 's' | 'm' | 'l' | 'xl'
@@ -31,7 +31,27 @@ export const IconButton = forwardRef<HTMLButtonElement, TIconButtonProps>((props
 		tetrary_color: cls.tetrary_color,
 		tetrary: cls.tetrary,
 	}
-
+	let typeSpinner: TSpinnerType = 'light'
+	switch (variant) {
+		case 'primary':
+			typeSpinner = 'dark'
+			break
+		case 'secondary_color':
+			typeSpinner = 'light'
+			break
+		case 'secondary':
+			typeSpinner = 'gray'
+			break
+		case 'tetrary_color':
+			typeSpinner = 'light'
+			break
+		case 'tetrary':
+			typeSpinner = 'gray'
+			break
+		case 'danger':
+			typeSpinner = 'danger'
+			break
+	}
 	return (
 		<button
 			ref={ref}
@@ -39,7 +59,7 @@ export const IconButton = forwardRef<HTMLButtonElement, TIconButtonProps>((props
 			disabled={disabled}
 			{...otherProps}
 		>
-			<span className={cls.inner_content}>{isLoading ? <Spinner /> : children}</span>
+			<span className={cls.inner_content}>{isLoading ? <Spinner type={typeSpinner} /> : children}</span>
 		</button>
 	)
 })

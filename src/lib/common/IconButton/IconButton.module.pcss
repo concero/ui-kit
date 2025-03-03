@@ -10,7 +10,6 @@
 	.inner_content {
 		display: flex;
 		white-space: nowrap;
-		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 	& svg {
@@ -47,7 +46,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			background-color: var(--color-accent-600);
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
@@ -67,7 +66,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 		}
@@ -88,7 +87,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 		}
@@ -109,7 +108,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 			background-color: var(--color-accent-100);
@@ -131,7 +130,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 			background-color: var(--color-gray-100);
@@ -153,7 +152,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-danger-500);
 			outline-offset: 2px;
 		}

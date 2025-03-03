@@ -25,16 +25,28 @@
 		height: 40px;
 		padding: var(--space-xs) var(--space-m);
 		font: var(--font-button-large);
+		svg {
+			width: var(--font-body-large-size);
+			height: var(--font-body-large-size);
+		}
 	}
 	&.size_l {
 		height: 48px;
 		padding: var(--space-s) var(--space-l);
 		font: var(--font-button-large);
+		svg {
+			width: var(--font-body-large-size);
+			height: var(--font-body-large-size);
+		}
 	}
 	&.size_xl {
 		height: 56px;
 		padding: var(--space-m) var(--space-xl);
 		font: var(--font-button-xlarge);
+		svg {
+			width: var(--font-body-xlarge-size);
+			height: var(--font-body-xlarge-size);
+		}
 	}
 
 	&.primary {
@@ -43,7 +55,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			background-color: var(--color-accent-600);
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
@@ -63,7 +75,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 		}
@@ -84,7 +96,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 		}
@@ -105,7 +117,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 			background-color: var(--color-accent-100);
@@ -127,7 +139,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 			background-color: var(--color-gray-100);
@@ -149,7 +161,7 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus {
+		&:focus-visible {
 			outline: 2px solid var(--color-danger-500);
 			outline-offset: 2px;
 		}
@@ -181,9 +193,14 @@
 		width: 100%;
 		text-align: center;
 	}
-	.trail_icon {
+	.trail_icon_wrap {
 		display: flex;
 		align-items: center;
 		margin-left: auto;
+		padding-left: 4px;
+		.trail_icon {
+			width: 16px;
+			height: 16px;
+		}
 	}
 }

@@ -44,6 +44,7 @@ export const Switch = forwardRef<HTMLButtonElement, TSwitchProps>((props: TSwitc
 				ref={ref}
 				aria-checked={checked ?? internalChecked}
 				aria-disabled={disabled}
+				disabled={disabled}
 				{...otherProps}
 			>
 				<div></div>
