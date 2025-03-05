@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Plus from '@/lib/assets/icons/monochrome/Plus.svg?react'
 import Refresh from '@/lib/assets/icons/monochrome/Refresh.svg?react'
-import { Button, TSize, TVariant } from './Button'
+import { Button, TButtonSize, TButtonVariant } from './Button'
 import { UnionToTuple } from '@/lib/utils/types/UnionToTuple'
 
-const sizes: UnionToTuple<TSize> = ['s', 'm', 'l', 'xl']
+const sizes: UnionToTuple<TButtonSize> = ['s', 'm', 'l', 'xl']
 
-const variants: UnionToTuple<TVariant> = [
+const variants: UnionToTuple<TButtonVariant> = [
 	'primary',
 	'secondary_color',
 	'secondary',
@@ -83,7 +83,9 @@ export const Disabled: Story = {
 	args: {
 		size: 's',
 		showTrailIcon: true,
-		disabled: true,
+		htmlButtonProps: {
+			disabled: true,
+		},
 		children: 'Custom value',
 	},
 }
@@ -148,7 +150,13 @@ export const AllVariants: Story = {
 							<Button variant={variant} size={size} isLoading>
 								Loading
 							</Button>
-							<Button variant={variant} size={size} disabled>
+							<Button
+								variant={variant}
+								size={size}
+								htmlButtonProps={{
+									disabled: true,
+								}}
+							>
 								Disabled
 							</Button>
 						</div>

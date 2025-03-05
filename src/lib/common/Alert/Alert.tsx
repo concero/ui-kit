@@ -7,10 +7,12 @@ export type TAlertProps = {
 	type: TAlertType
 	title?: string
 	description?: string
-} & Omit<React.ComponentProps<'div'>, 'title'>
+	className?: string
+	htmlDivProps?: Omit<React.ComponentProps<'div'>, 'className'>
+}
 type TClassname = string
 export const Alert = (props: TAlertProps) => {
-	const { type = 'branded', title, description, ...otherProps } = props
+	const { type = 'branded', title, description, className, htmlDivProps } = props
 
 	const typeMap: Record<TAlertType, TClassname> = {
 		branded: cls.branded,
@@ -20,7 +22,7 @@ export const Alert = (props: TAlertProps) => {
 		warning: cls.warning,
 	}
 	return (
-		<div className={clsx(cls.alert_body_wrap, typeMap[type])} {...otherProps}>
+		<div className={clsx(cls.alert_body_wrap, typeMap[type], className)} {...htmlDivProps}>
 			<div>
 				<AlertIcon type={type} />
 			</div>
@@ -34,8 +36,8 @@ export const Alert = (props: TAlertProps) => {
 	)
 }
 
-export const AlertIcon = (props: Pick<TAlertProps, 'type'>) => {
-	const { type = 'branded' } = props
+export const AlertIcon = (props: Pick<TAlertProps, 'type' | 'htmlDivProps' | 'className'>) => {
+	const { type = 'branded', className, htmlDivProps } = props
 
 	const typeMap: Record<TAlertType, TClassname> = {
 		branded: cls.branded,
@@ -45,7 +47,7 @@ export const AlertIcon = (props: Pick<TAlertProps, 'type'>) => {
 		warning: cls.warning,
 	}
 	return (
-		<div className={clsx(cls.icon_wrap, typeMap[type])}>
+		<div className={clsx(cls.icon_wrap, typeMap[type], className)} {...htmlDivProps}>
 			<Bolt />
 		</div>
 	)

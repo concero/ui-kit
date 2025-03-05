@@ -1,7 +1,7 @@
-import { ComponentProps, forwardRef, ReactNode, useId, useState } from 'react'
+import { forwardRef, ReactNode, useId, useState } from 'react'
 import cls from './Switch.module.pcss'
 import clsx from 'clsx'
-export type TSwitchProps = Omit<ComponentProps<'button'>, 'onChange'> & {
+export type TSwitchProps = {
 	checked?: boolean
 	/**Alias for checked */
 	value?: boolean
@@ -9,6 +9,9 @@ export type TSwitchProps = Omit<ComponentProps<'button'>, 'onChange'> & {
 	leftLabel?: ReactNode
 	rightLabel?: ReactNode
 	id?: string | number
+	className?: string
+	htmlDivProps?: Omit<React.ComponentProps<'div'>, 'className' | 'disabled'>
+	disabled?: boolean
 	isHovered?: boolean
 	isPressed?: boolean
 	isFocused?: boolean
@@ -23,16 +26,17 @@ export const Switch = forwardRef<HTMLButtonElement, TSwitchProps>((props: TSwitc
 		id,
 		rightLabel,
 		leftLabel,
+		htmlDivProps,
+		className,
 		isHovered,
 		isPressed,
 		isFocused,
-		...otherProps
 	} = props
 	const [internalChecked, setInternalChecked] = useState(checked ?? value ?? false)
 	const actualValue = checked ?? value ?? internalChecked
 
 	const switchGeneratedId = useId()
-	const switchId = id ?? switchGeneratedId
+	const switchId = String(id ?? switchGeneratedId)
 
 	const switchHandler = (event: React.MouseEvent<HTMLButtonElement | HTMLLabelElement>) => {
 		event.preventDefault()
@@ -42,18 +46,18 @@ export const Switch = forwardRef<HTMLButtonElement, TSwitchProps>((props: TSwitc
 	}
 
 	return (
-		<div className={clsx(cls.wrap_with_label)}>
+		<div className={clsx(cls.wrap_with_label, className)} {...htmlDivProps}>
 			{leftLabel ? (
 				<label
 					onClick={switchHandler}
-					htmlFor={switchId}
+					htmlFor={String(switchId)}
 					className={clsx(cls.label, { [cls.label_disabled]: disabled }, [])}
 				>
 					{leftLabel}
 				</label>
 			) : null}
 			<button
-				id={switchId}
+				id={String(switchId)}
 				onClick={switchHandler}
 				className={clsx(cls.wrapper, {
 					[cls.is_active]: actualValue,
@@ -65,7 +69,6 @@ export const Switch = forwardRef<HTMLButtonElement, TSwitchProps>((props: TSwitc
 				aria-checked={checked ?? internalChecked}
 				aria-disabled={disabled}
 				disabled={disabled}
-				{...otherProps}
 			>
 				<div></div>
 			</button>

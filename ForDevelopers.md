@@ -71,7 +71,8 @@ If the changes are **only for developers**, there's **no need to bump the versio
     - Variable names should match those in **Figma** to simplify maintenance and understanding.
 - **External Styles Priority**: Ensure the component accepts external styles (`className`, `style`) with the highest priority.
 - **Forwarding Refs**: Support `ref` forwarding for seamless integration with parent components.
-- **HTML Props Override**: Allow passing standard HTML attributes (`aria-*`, `style`,`onMouseEnter`, etc.) that override internal defaults.
+- **HTML Props Override**: Allow passing standard HTML attributes (aria-*, style, onMouseEnter, etc.)   
+        that override internal defaults, while wrapping any remaining attributes in a separate field, such as htmlProps or htmlButtonProps or htmlDivProps and etc.
 - **State Props**: Allow passing pseudo-state classes (`isHovered`, `isPressed`, `isFocused`, and others as needed) to specify component states programmatically.
 - **Examples**:
     - `Button`, `Checkbox` handle `aria-*` attributes, `style`, and other HTML props correctly.

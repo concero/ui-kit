@@ -1,7 +1,7 @@
-import { useState, HTMLProps, useId, forwardRef } from 'react'
+import { useState, useId, forwardRef } from 'react'
 import cls from './Checkbox.module.pcss'
 import clsx from 'clsx'
-export type TCheckboxProps = Omit<HTMLProps<HTMLDivElement>, 'onChange' | 'disabled' | 'className'> & {
+export type TCheckboxProps = {
 	checked?: boolean
 	/**Alias for checked */
 	value?: boolean
@@ -10,13 +10,14 @@ export type TCheckboxProps = Omit<HTMLProps<HTMLDivElement>, 'onChange' | 'disab
 	label?: string | number
 	id?: string | number
 	disabled?: boolean
+	htmlProps?: Omit<React.ComponentProps<'div'>, 'className' | 'disabled'>
 	isHovered?: boolean
 	isPressed?: boolean
 	isFocused?: boolean
 }
 
 export const Checkbox = forwardRef<HTMLDivElement, TCheckboxProps>((props: TCheckboxProps, ref) => {
-	const { className, disabled, checked, value, onChange, id, label, isFocused, isHovered, isPressed, ...otherProps } =
+	const { className, checked, value, onChange, id, label, isFocused, isHovered, isPressed, disabled, htmlProps } =
 		props
 	const [internalChecked, setInternalChecked] = useState(checked ?? value ?? false)
 	const checkboxGeneratedId = useId()
@@ -48,15 +49,15 @@ export const Checkbox = forwardRef<HTMLDivElement, TCheckboxProps>((props: TChec
 				tabIndex={0}
 				role="checkbox"
 				aria-checked={checked ?? internalChecked}
-				id={checkboxId}
-				{...otherProps}
+				id={String(checkboxId)}
+				{...htmlProps}
 			>
 				<div className={cls.inner}></div>
 			</div>
 			{label ? (
 				<label
 					onClick={handleClick}
-					htmlFor={checkboxId}
+					htmlFor={String(checkboxId)}
 					className={clsx(cls.label, { [cls.label_disabled]: disabled }, [])}
 				>
 					{label}

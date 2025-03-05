@@ -10,34 +10,35 @@ export interface IButtonProps {
 	size?: TIconButtonSize
 	variant?: TIconButtonVariant
 	className?: string
-	isFull?: boolean
+	htmlButtonProps?: Omit<ComponentProps<'button'>, 'disabled' | 'className'>
+	disabled?: boolean
 	isLoading?: boolean
 	isHovered?: boolean
 	isPressed?: boolean
 	isFocused?: boolean
 }
-export type TIconButtonProps = ComponentProps<'button'> & PropsWithChildren<IButtonProps>
+export type TIconButtonProps = PropsWithChildren<IButtonProps>
 
 export const IconButton = forwardRef<HTMLButtonElement, TIconButtonProps>((props: TIconButtonProps, ref) => {
 	const {
 		children,
 		className,
 		variant = 'primary',
-		disabled,
 		size = 'm',
 		isLoading = false,
 		isHovered,
 		isPressed,
 		isFocused,
-		...otherProps
+		disabled,
+		htmlButtonProps,
 	} = props
-	const sizeMap: Record<TSize, TClassname> = {
+	const sizeMap: Record<TIconButtonSize, TClassname> = {
 		l: cls.size_l,
 		s: cls.size_s,
 		m: cls.size_m,
 		xl: cls.size_xl,
 	}
-	const variantMap: Record<TVariant, TClassname> = {
+	const variantMap: Record<TIconButtonVariant, TClassname> = {
 		primary: cls.primary,
 		danger: cls.danger,
 		secondary_color: cls.secondary_color,
@@ -82,7 +83,7 @@ export const IconButton = forwardRef<HTMLButtonElement, TIconButtonProps>((props
 				className,
 			)}
 			disabled={disabled}
-			{...otherProps}
+			{...htmlButtonProps}
 		>
 			<span className={cls.inner_content}>{isLoading ? <Spinner type={typeSpinner} /> : children}</span>
 		</button>

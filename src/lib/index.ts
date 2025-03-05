@@ -1,4 +1,5 @@
 import './styles/variables.pcss'
+import './assets/fonts/DM_Sans/typography-woff.css'
 export { Button } from './common/Button/Button'
 export type { TButtonSize, TButtonVariant, TButtonProps } from './common/Button/Button'
 export { Checkbox } from './common/Checkbox/Checkbox'

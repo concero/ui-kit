@@ -14,29 +14,31 @@ interface IButtonProps {
 	className?: string
 	isFull?: boolean
 	showTrailIcon?: boolean
+	disabled?: boolean
 	isLoading?: boolean
 	isHovered?: boolean
 	isPressed?: boolean
 	isFocused?: boolean
+	htmlButtonProps?: Omit<ComponentProps<'button'>, 'className'>
 }
-export type TButtonProps = ComponentProps<'button'> & PropsWithChildren<IButtonProps>
+export type TButtonProps = PropsWithChildren<IButtonProps>
 
 export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButtonProps, ref) => {
 	const {
 		children,
 		className,
 		variant = 'primary',
-		disabled,
 		size = 'm',
 		isLoading = false,
 		leftIcon,
 		rightIcon,
 		isFull,
 		showTrailIcon,
+		disabled,
 		isHovered,
 		isPressed,
 		isFocused,
-		...otherProps
+		htmlButtonProps,
 	} = props
 	const sizeMap: Record<TButtonSize, TClassname> = {
 		l: cls.size_l,
@@ -90,11 +92,11 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 				className,
 			)}
 			disabled={disabled}
-			{...otherProps}
+			{...htmlButtonProps}
 		>
-			{!isLoading && leftIcon}
+			{!isLoading && <span className={cls.left_icon_wrap}>{leftIcon}</span>}
 			<span className={cls.inner_content}>{isLoading ? <Spinner type={typeSpinner} /> : children}</span>
-			{!isLoading && rightIcon}
+			{!isLoading && <span className={cls.right_icon_wrap}>{rightIcon}</span>}
 			{showTrailIcon && (
 				<span className={cls.trail_icon_wrap}>
 					<TrailArrow className={cls.trail_icon} />

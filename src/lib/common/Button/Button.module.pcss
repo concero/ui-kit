@@ -3,11 +3,12 @@
 	flex-direction: row;
 	align-items: center;
 	gap: 4px;
-	max-width: 100%;
 	border: none;
 	outline: none;
 	border-radius: var(--space-s);
 	background-color: var(--white);
+	width: min-content;
+	max-width: 100%;
 	.inner_content {
 		white-space: nowrap;
 		overflow: hidden;
@@ -15,6 +16,18 @@
 	}
 	& svg {
 		flex-shrink: 0;
+	}
+	.left_icon_wrap {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: 4px;
+	}
+	.right_icon_wrap {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-left: 4px;
 	}
 	&.size_s {
 		height: 32px;

@@ -9,10 +9,12 @@ export type TTagProps = PropsWithChildren<{
 	size?: TTagSize
 	filled?: boolean
 	variant?: TTagVariant
+	className?: string
+	htmlDivProps?: Omit<React.ComponentProps<'div'>, 'className'>
 }>
 
 export const Tag = forwardRef<HTMLDivElement, TTagProps>((props: TTagProps, ref) => {
-	const { size = 's', filled = false, variant = 'branded', children, ...otherProps } = props
+	const { size = 's', filled = false, variant = 'branded', children, className, htmlDivProps } = props
 
 	const sizeMap: Record<TTagSize, TClassname> = {
 		m: cls.size_m,
@@ -28,9 +30,9 @@ export const Tag = forwardRef<HTMLDivElement, TTagProps>((props: TTagProps, ref)
 
 	return (
 		<div
-			className={clsx(cls.tag, sizeMap[size], variantMap[variant], { [cls.filled]: filled })}
+			className={clsx(cls.tag, sizeMap[size], variantMap[variant], { [cls.filled]: filled }, className)}
 			ref={ref}
-			{...otherProps}
+			{...htmlDivProps}
 		>
 			{children}
 		</div>
