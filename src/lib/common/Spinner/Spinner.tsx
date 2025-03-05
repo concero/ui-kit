@@ -8,7 +8,7 @@ import { ReactElement } from 'react'
 
 export type TSpinnerType = 'dark' | 'light' | 'gray' | 'danger'
 
-type TSpinnerProps = {
+export type TSpinnerProps = {
 	type?: TSpinnerType
 }
 

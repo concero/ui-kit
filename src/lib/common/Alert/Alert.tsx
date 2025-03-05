@@ -2,8 +2,8 @@ import clsx from 'clsx'
 import Bolt from '@/lib/assets/icons/monochrome/Bolt.svg?react'
 import cls from './Alert.module.pcss'
 
-type TAlertType = 'neutral' | 'warning' | 'negative' | 'positive' | 'branded'
-type TAlertProps = {
+export type TAlertType = 'neutral' | 'warning' | 'negative' | 'positive' | 'branded'
+export type TAlertProps = {
 	type: TAlertType
 	title?: string
 	description?: string

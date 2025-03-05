@@ -1,7 +1,7 @@
 import { ComponentProps, forwardRef, ReactNode, useId, useState } from 'react'
 import cls from './Switch.module.pcss'
 import clsx from 'clsx'
-type TSwitchProps = Omit<ComponentProps<'button'>, 'onChange'> & {
+export type TSwitchProps = Omit<ComponentProps<'button'>, 'onChange'> & {
 	checked?: boolean
 	/**Alias for checked */
 	value?: boolean

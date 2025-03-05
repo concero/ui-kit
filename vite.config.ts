@@ -65,7 +65,7 @@ export default defineConfig({
 		copyPublicDir: true,
 		lib: {
 			entry: path.resolve('src', 'lib', 'index.ts'),
-			name: '@concero/ui',
+			name: '@concero/ui-kit',
 			fileName: format => `index.${format}.js`,
 			formats: ['es', 'cjs'],
 		},

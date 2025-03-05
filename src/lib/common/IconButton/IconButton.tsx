@@ -4,11 +4,11 @@ import clsx from 'clsx'
 import { Spinner, TSpinnerType } from '../Spinner/Spinner'
 
 type TClassname = string
-export type TSize = 's' | 'm' | 'l' | 'xl'
-export type TVariant = 'primary' | 'secondary_color' | 'secondary' | 'tetrary_color' | 'tetrary' | 'danger'
+export type TIconButtonSize = 's' | 'm' | 'l' | 'xl'
+export type TIconButtonVariant = 'primary' | 'secondary_color' | 'secondary' | 'tetrary_color' | 'tetrary' | 'danger'
 export interface IButtonProps {
-	size?: TSize
-	variant?: TVariant
+	size?: TIconButtonSize
+	variant?: TIconButtonVariant
 	className?: string
 	isFull?: boolean
 	isLoading?: boolean

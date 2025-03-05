@@ -4,11 +4,11 @@ import clsx from 'clsx'
 import { Spinner, TSpinnerType } from '../Spinner/Spinner'
 import TrailArrow from '@/lib/assets/icons/monochrome/TrailArrow.svg?react'
 type TClassname = string
-export type TSize = 's' | 'm' | 'l' | 'xl'
-export type TVariant = 'primary' | 'secondary_color' | 'secondary' | 'tetrary_color' | 'tetrary' | 'danger'
-export interface IButtonProps {
-	size?: TSize
-	variant?: TVariant
+export type TButtonSize = 's' | 'm' | 'l' | 'xl'
+export type TButtonVariant = 'primary' | 'secondary_color' | 'secondary' | 'tetrary_color' | 'tetrary' | 'danger'
+interface IButtonProps {
+	size?: TButtonSize
+	variant?: TButtonVariant
 	leftIcon?: ReactNode
 	rightIcon?: ReactNode
 	className?: string
@@ -38,13 +38,13 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 		isFocused,
 		...otherProps
 	} = props
-	const sizeMap: Record<TSize, TClassname> = {
+	const sizeMap: Record<TButtonSize, TClassname> = {
 		l: cls.size_l,
 		s: cls.size_s,
 		m: cls.size_m,
 		xl: cls.size_xl,
 	}
-	const variantMap: Record<TVariant, TClassname> = {
+	const variantMap: Record<TButtonVariant, TClassname> = {
 		primary: cls.primary,
 		danger: cls.danger,
 		secondary_color: cls.secondary_color,

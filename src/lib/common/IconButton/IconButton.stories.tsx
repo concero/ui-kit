@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import Plus from '@/lib/assets/icons/monochrome/Plus.svg?react'
-import { IconButton, TSize, TVariant } from './IconButton'
+import { IconButton, TIconButtonSize, TIconButtonVariant } from './IconButton'
 import { UnionToTuple } from '@/lib/utils/types/UnionToTuple'
-const sizes: UnionToTuple<TSize> = ['s', 'm', 'l', 'xl']
+const sizes: UnionToTuple<TIconButtonSize> = ['s', 'm', 'l', 'xl']
 
-const variants: UnionToTuple<TVariant> = [
+const variants: UnionToTuple<TIconButtonVariant> = [
 	'primary',
 	'secondary_color',
 	'secondary',

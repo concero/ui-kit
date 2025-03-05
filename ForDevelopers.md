@@ -9,7 +9,7 @@ npm run prepare
 - To run a full lint check: `npm run lint`
 - For build: `npm run build`
 
-TO ADD a NEW component, simply place it in the /src/lib/ folder and re-export it in /src/lib/index.ts.
+ TO ADD a NEW component, simply place it in the /src/lib/ folder and **re-export** it in /src/lib/index.ts.
 
 ## Publish
 
