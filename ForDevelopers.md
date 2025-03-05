@@ -72,6 +72,7 @@ If the changes are **only for developers**, there's **no need to bump the versio
 - **External Styles Priority**: Ensure the component accepts external styles (`className`, `style`) with the highest priority.
 - **Forwarding Refs**: Support `ref` forwarding for seamless integration with parent components.
 - **HTML Props Override**: Allow passing standard HTML attributes (`aria-*`, `style`,`onMouseEnter`, etc.) that override internal defaults.
+- **State Props**: Allow passing pseudo-state classes (`isHovered`, `isPressed`, `isFocused`, and others as needed) to specify component states programmatically.
 - **Examples**:
     - `Button`, `Checkbox` handle `aria-*` attributes, `style`, and other HTML props correctly.
 
@@ -104,6 +105,14 @@ For convenience, you can create a separate settings profile in VSCode
 	"[javascript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode" // Ensures Prettier is used as the formatter specifically for JavaScript files.
 	},
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true,
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
 	"eslint.useFlatConfig": true, // For support eslint config
 	"cssvar.files": ["**/*.css", "**/*.pcss"] // For global css/pcss variables
 }

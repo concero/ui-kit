@@ -9,10 +9,25 @@ type TSwitchProps = Omit<ComponentProps<'button'>, 'onChange'> & {
 	leftLabel?: ReactNode
 	rightLabel?: ReactNode
 	id?: string | number
+	isHovered?: boolean
+	isPressed?: boolean
+	isFocused?: boolean
 }
 /**Alias for Toggle  */
 export const Switch = forwardRef<HTMLButtonElement, TSwitchProps>((props: TSwitchProps, ref) => {
-	const { checked, onChange, value, disabled, id, rightLabel, leftLabel, ...otherProps } = props
+	const {
+		checked,
+		onChange,
+		value,
+		disabled,
+		id,
+		rightLabel,
+		leftLabel,
+		isHovered,
+		isPressed,
+		isFocused,
+		...otherProps
+	} = props
 	const [internalChecked, setInternalChecked] = useState(checked ?? value ?? false)
 	const actualValue = checked ?? value ?? internalChecked
 
@@ -40,7 +55,12 @@ export const Switch = forwardRef<HTMLButtonElement, TSwitchProps>((props: TSwitc
 			<button
 				id={switchId}
 				onClick={switchHandler}
-				className={clsx(cls.wrapper, { [cls.is_active]: actualValue })}
+				className={clsx(cls.wrapper, {
+					[cls.is_active]: actualValue,
+					[cls.is_hovered]: isHovered,
+					[cls.is_pressed]: isPressed,
+					[cls.is_focused]: isFocused,
+				})}
 				ref={ref}
 				aria-checked={checked ?? internalChecked}
 				aria-disabled={disabled}

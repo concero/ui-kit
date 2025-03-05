@@ -46,16 +46,19 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus-visible {
+		&:focus-visible,
+		&.is_focused {
 			background-color: var(--color-accent-600);
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 		}
-		&:hover {
+		&:hover,
+		&.is_hovered {
 			cursor: pointer;
 			background-color: var(--color-accent-700);
 		}
-		&:active {
+		&:active,
+		&.is_pressed {
 			outline: none;
 			background-color: var(--color-accent-800);
 		}
@@ -66,16 +69,19 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus-visible {
+		&:focus-visible,
+		&.is_focused {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 		}
-		&:hover {
+		&:hover,
+		&.is_hovered {
 			cursor: pointer;
 			color: var(--color-accent-700);
 			background-color: var(--color-accent-200);
 		}
-		&:active {
+		&:active,
+		&.is_pressed {
 			outline: none;
 			color: var(--color-accent-700);
 			background-color: var(--color-accent-300);
@@ -87,16 +93,19 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus-visible {
+		&:focus-visible,
+		&.is_focused {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 		}
-		&:hover {
+		&:hover,
+		&.is_hovered {
 			cursor: pointer;
 			color: var(--color-gray-700);
 			background-color: var(--color-gray-200);
 		}
-		&:active {
+		&:active,
+		&.is_pressed {
 			outline: none;
 			color: var(--color-gray-700);
 			background-color: var(--color-gray-300);
@@ -108,17 +117,20 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus-visible {
+		&:focus-visible,
+		&.is_focused {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 			background-color: var(--color-accent-100);
 		}
-		&:hover {
+		&:hover,
+		&.is_hovered {
 			cursor: pointer;
 			color: var(--color-accent-700);
 			background-color: var(--color-accent-200);
 		}
-		&:active {
+		&:active,
+		&.is_pressed {
 			outline: none;
 			color: var(--color-accent-700);
 			background-color: var(--color-accent-300);
@@ -130,17 +142,20 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus-visible {
+		&:focus-visible,
+		&.is_focused {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 			background-color: var(--color-gray-100);
 		}
-		&:hover {
+		&:hover,
+		&.is_hovered {
 			cursor: pointer;
 			color: var(--color-gray-700);
 			background-color: var(--color-gray-200);
 		}
-		&:active {
+		&:active,
+		&.is_pressed {
 			outline: none;
 			color: var(--color-gray-700);
 			background-color: var(--color-gray-300);
@@ -152,15 +167,18 @@
 		transition:
 			background-color 300ms ease-in,
 			outline 300ms ease-in;
-		&:focus-visible {
+		&:focus-visible,
+		&.is_focused {
 			outline: 2px solid var(--color-danger-500);
 			outline-offset: 2px;
 		}
-		&:hover {
+		&:hover,
+		&.is_hovered {
 			cursor: pointer;
 			background-color: var(--color-danger-700);
 		}
-		&:active {
+		&:active,
+		&.is_pressed {
 			outline: none;
 			background-color: var(--color-danger-800);
 		}

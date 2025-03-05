@@ -7,7 +7,7 @@ This UI library is designed for use in projects such as **Concero** or **Lanca**
 To install the library, run the following command:
 
 ```bash
-npm i concero-ui
+npm i @concero/ui-kit
 ```
 
 ## Project Setup

@@ -7,13 +7,17 @@ export type TCheckboxProps = Omit<HTMLProps<HTMLDivElement>, 'onChange' | 'disab
 	value?: boolean
 	onChange?: (checked: boolean) => void
 	className?: string
-	disabled?: boolean
 	label?: string | number
 	id?: string | number
+	disabled?: boolean
+	isHovered?: boolean
+	isPressed?: boolean
+	isFocused?: boolean
 }
 
 export const Checkbox = forwardRef<HTMLDivElement, TCheckboxProps>((props: TCheckboxProps, ref) => {
-	const { className, disabled, checked, value, onChange, id, label, ...otherProps } = props
+	const { className, disabled, checked, value, onChange, id, label, isFocused, isHovered, isPressed, ...otherProps } =
+		props
 	const [internalChecked, setInternalChecked] = useState(checked ?? value ?? false)
 	const checkboxGeneratedId = useId()
 	const checkboxId = id ?? checkboxGeneratedId
@@ -33,6 +37,9 @@ export const Checkbox = forwardRef<HTMLDivElement, TCheckboxProps>((props: TChec
 					{
 						[cls.checked]: checked ?? internalChecked,
 						[cls.disabled]: disabled,
+						[cls.is_hovered]: isHovered,
+						[cls.is_pressed]: isPressed,
+						[cls.is_focused]: isFocused,
 					},
 					className,
 				)}

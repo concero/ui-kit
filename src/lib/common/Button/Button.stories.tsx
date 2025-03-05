@@ -39,6 +39,15 @@ const meta: Meta<typeof Button> = {
 				},
 			},
 		},
+		isHovered: {
+			control: 'boolean',
+		},
+		isPressed: {
+			control: 'boolean',
+		},
+		isFocused: {
+			control: 'boolean',
+		},
 	},
 }
 
@@ -127,6 +136,15 @@ export const AllVariants: Story = {
 								{variant} {size}
 							</Button>
 
+							<Button variant={variant} size={size} isFocused>
+								Focused
+							</Button>
+							<Button variant={variant} size={size} isHovered>
+								Hovered
+							</Button>
+							<Button variant={variant} size={size} isPressed>
+								Pressed
+							</Button>
 							<Button variant={variant} size={size} isLoading>
 								Loading
 							</Button>

@@ -24,15 +24,18 @@
 		background: var(--color-gray-100);
 		box-shadow: 0px 2px 4px 0px rgba(16, 24, 40, 0.3);
 	}
-	&:focus-visible:not(:active) {
+	&:focus-visible:not(:active),
+	&.is_focused:not(:active) {
 		outline: 2px solid var(--color-accent-500);
 		outline-offset: 2px;
 	}
-	&:hover {
+	&:hover,
+	&.is_pressed {
 		background-color: var(--color-gray-300);
 		cursor: pointer;
 	}
-	&:active {
+	&:active,
+	&.is_pressed {
 		background-color: var(--color-gray-400);
 		& > div {
 			width: 20px;
@@ -42,15 +45,18 @@
 	&.is_active {
 		justify-content: flex-end;
 		background: var(--color-accent-600);
-		&:focus-visible:not(:active) {
+		&:focus-visible:not(:active),
+		&.is_focused:not(:active) {
 			outline: 2px solid var(--color-accent-500);
 			outline-offset: 2px;
 		}
-		&:hover {
+		&:hover,
+		&.is_pressed {
 			background-color: var(--color-accent-800);
 			cursor: pointer;
 		}
-		&:active {
+		&:active,
+		&.is_pressed {
 			& > div {
 				width: 20px;
 			}
@@ -70,7 +76,8 @@
 	font: var(--font-button-medium);
 	line-height: 28px;
 	color: var(--color-gray-700);
-	&:hover {
+	&:hover,
+	&.is_pressed {
 		cursor: pointer;
 	}
 	user-select: none;

@@ -79,6 +79,15 @@ export const AllVariants: Story = {
 								<Plus />
 							</IconButton>
 
+							<IconButton variant={variant} size={size} isFocused>
+								<Plus />
+							</IconButton>
+							<IconButton variant={variant} size={size} isHovered>
+								<Plus />
+							</IconButton>
+							<IconButton variant={variant} size={size} isPressed>
+								<Plus />
+							</IconButton>
 							<IconButton variant={variant} size={size} isLoading>
 								<Plus />
 							</IconButton>

@@ -8,13 +8,16 @@ export type TSize = 's' | 'm' | 'l' | 'xl'
 export type TVariant = 'primary' | 'secondary_color' | 'secondary' | 'tetrary_color' | 'tetrary' | 'danger'
 export interface IButtonProps {
 	size?: TSize
-	isLoading?: boolean
 	variant?: TVariant
 	leftIcon?: ReactNode
 	rightIcon?: ReactNode
 	className?: string
 	isFull?: boolean
 	showTrailIcon?: boolean
+	isLoading?: boolean
+	isHovered?: boolean
+	isPressed?: boolean
+	isFocused?: boolean
 }
 export type TButtonProps = ComponentProps<'button'> & PropsWithChildren<IButtonProps>
 
@@ -30,6 +33,9 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 		rightIcon,
 		isFull,
 		showTrailIcon,
+		isHovered,
+		isPressed,
+		isFocused,
 		...otherProps
 	} = props
 	const sizeMap: Record<TSize, TClassname> = {
@@ -77,6 +83,9 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 				{
 					[cls.loading]: isLoading,
 					[cls.is_full]: isFull,
+					[cls.is_hovered]: isHovered,
+					[cls.is_pressed]: isPressed,
+					[cls.is_focused]: isFocused,
 				},
 				className,
 			)}

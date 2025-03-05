@@ -8,15 +8,29 @@ export type TSize = 's' | 'm' | 'l' | 'xl'
 export type TVariant = 'primary' | 'secondary_color' | 'secondary' | 'tetrary_color' | 'tetrary' | 'danger'
 export interface IButtonProps {
 	size?: TSize
-	isLoading?: boolean
 	variant?: TVariant
 	className?: string
 	isFull?: boolean
+	isLoading?: boolean
+	isHovered?: boolean
+	isPressed?: boolean
+	isFocused?: boolean
 }
 export type TIconButtonProps = ComponentProps<'button'> & PropsWithChildren<IButtonProps>
 
 export const IconButton = forwardRef<HTMLButtonElement, TIconButtonProps>((props: TIconButtonProps, ref) => {
-	const { children, className, variant = 'primary', disabled, size = 'm', isLoading = false, ...otherProps } = props
+	const {
+		children,
+		className,
+		variant = 'primary',
+		disabled,
+		size = 'm',
+		isLoading = false,
+		isHovered,
+		isPressed,
+		isFocused,
+		...otherProps
+	} = props
 	const sizeMap: Record<TSize, TClassname> = {
 		l: cls.size_l,
 		s: cls.size_s,
@@ -55,7 +69,18 @@ export const IconButton = forwardRef<HTMLButtonElement, TIconButtonProps>((props
 	return (
 		<button
 			ref={ref}
-			className={clsx(cls.button, sizeMap[size], variantMap[variant], { [cls.loading]: isLoading }, className)}
+			className={clsx(
+				cls.button,
+				sizeMap[size],
+				variantMap[variant],
+				{
+					[cls.loading]: isLoading,
+					[cls.is_hovered]: isHovered,
+					[cls.is_pressed]: isPressed,
+					[cls.is_focused]: isFocused,
+				},
+				className,
+			)}
 			disabled={disabled}
 			{...otherProps}
 		>
