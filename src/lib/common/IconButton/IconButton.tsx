@@ -31,6 +31,7 @@ export const IconButton = forwardRef<HTMLButtonElement, TIconButtonProps>((props
 		isPressed,
 		isFocused,
 		disabled,
+		onClick,
 		htmlButtonProps,
 	} = props
 	const sizeMap: Record<TIconButtonSize, TClassname> = {
@@ -83,6 +84,7 @@ export const IconButton = forwardRef<HTMLButtonElement, TIconButtonProps>((props
 				},
 				className,
 			)}
+			onClick={onClick}
 			disabled={disabled}
 			{...htmlButtonProps}
 		>

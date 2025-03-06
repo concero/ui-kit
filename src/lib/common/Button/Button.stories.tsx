@@ -61,6 +61,7 @@ export const Primary: Story = {
 		size: 's',
 		leftIcon: <Plus />,
 		rightIcon: <Refresh />,
+		onClick: () => alert('Click'),
 		children: 'Custom value',
 	},
 }

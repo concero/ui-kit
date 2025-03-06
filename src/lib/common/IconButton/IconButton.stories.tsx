@@ -44,6 +44,7 @@ export const Primary: Story = {
 	args: {
 		size: 's',
 		children: <Plus />,
+		onClick: () => alert('click'),
 	},
 }
 export const Loading: Story = {
