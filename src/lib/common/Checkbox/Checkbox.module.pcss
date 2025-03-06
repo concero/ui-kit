@@ -12,9 +12,9 @@ $heightCheckboxLine: 20px;
 	height: 24px;
 	border: 2px solid transparent;
 	transition: all 0.1s;
-	border-radius: calc(var(--space-xs) + 4px);
+	border-radius: calc(var(--space-xs) + 2px);
 	.inner {
-		border-radius: calc(var(--space-xs) + 2px);
+		border-radius: calc(var(--space-xs));
 		width: $heightCheckboxLine;
 		height: $heightCheckboxLine;
 		border: 2px solid transparent;
@@ -22,7 +22,7 @@ $heightCheckboxLine: 20px;
 	}
 	&:focus-visible,
 	&.is_focused {
-		border-radius: calc(var(--space-xs) + 4px);
+		border-radius: calc(var(--space-xs) + 2px);
 		outline: 2px solid var(--color-accent-500);
 		& > .inner {
 			border: 2px solid var(--color-accent-600);
@@ -63,7 +63,7 @@ $heightCheckboxLine: 20px;
 	}
 
 	&.checked {
-		border-radius: calc(var(--space-xs) + 4px);
+		border-radius: calc(var(--space-xs) + 2px);
 
 		.inner {
 			border: 2px solid var(--color-gray-100);
