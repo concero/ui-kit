@@ -19,7 +19,8 @@ interface IButtonProps {
 	isHovered?: boolean
 	isPressed?: boolean
 	isFocused?: boolean
-	htmlButtonProps?: Omit<ComponentProps<'button'>, 'className'>
+	onClick?: React.MouseEventHandler<HTMLButtonElement>
+	htmlButtonProps?: Omit<ComponentProps<'button'>, 'className' | 'onClick'>
 }
 export type TButtonProps = PropsWithChildren<IButtonProps>
 
@@ -38,6 +39,7 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 		isHovered,
 		isPressed,
 		isFocused,
+		onClick,
 		htmlButtonProps,
 	} = props
 	const sizeMap: Record<TButtonSize, TClassname> = {
@@ -92,6 +94,7 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 				className,
 			)}
 			disabled={disabled}
+			onClick={onClick}
 			{...htmlButtonProps}
 		>
 			{!isLoading && <span className={cls.left_icon_wrap}>{leftIcon}</span>}

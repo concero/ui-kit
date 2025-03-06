@@ -10,7 +10,8 @@ export interface IButtonProps {
 	size?: TIconButtonSize
 	variant?: TIconButtonVariant
 	className?: string
-	htmlButtonProps?: Omit<ComponentProps<'button'>, 'disabled' | 'className'>
+	onClick?: React.MouseEventHandler<HTMLButtonElement>
+	htmlButtonProps?: Omit<ComponentProps<'button'>, 'disabled' | 'className' | 'onClick'>
 	disabled?: boolean
 	isLoading?: boolean
 	isHovered?: boolean
