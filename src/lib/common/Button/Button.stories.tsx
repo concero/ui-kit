@@ -104,6 +104,7 @@ export const Disabled: Story = {
 		size: 's',
 		showTrailIcon: true,
 		isDisabled: true,
+		rightIcon: <Switch />,
 		children: 'Custom value',
 	},
 }
@@ -144,6 +145,75 @@ export const OverflowTextWithIcons: Story = {
 	),
 }
 
+export const IconCombinations: Story = {
+	render: () => (
+		<div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+			{/* Row 1: No icons */}
+			<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+				<h4 style={{ margin: 0 }}>No Icons</h4>
+				<Button variant={'primary'} size={'m'}>
+					Primary
+				</Button>
+			</div>
+
+			{/* Row 2: Only left icon */}
+			<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+				<h4 style={{ margin: 0 }}>Only Left Icon</h4>
+				<Button variant={'primary'} size={'m'} leftIcon={<Plus />}>
+					Primary
+				</Button>
+			</div>
+
+			{/* Row 3: Only right icon */}
+			<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+				<h4 style={{ margin: 0 }}>Only Right Icon</h4>
+				<Button variant={'primary'} size={'m'} rightIcon={<Refresh />}>
+					Primary
+				</Button>
+			</div>
+
+			{/* Row 4: Both icons */}
+			<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+				<h4 style={{ margin: 0 }}>Both Icons</h4>
+				<Button variant={'primary'} size={'m'} leftIcon={<Plus />} rightIcon={<Refresh />}>
+					Primary
+				</Button>
+			</div>
+
+			{/* Row 5: Only trail icon */}
+			<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+				<h4 style={{ margin: 0 }}>Only Trail Icon</h4>
+				<Button variant={'primary'} size={'m'} showTrailIcon>
+					Primary
+				</Button>
+			</div>
+
+			{/* Row 6: Left icon + trail icon */}
+			<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+				<h4 style={{ margin: 0 }}>Left Icon + Trail Icon</h4>
+				<Button variant={'primary'} size={'m'} leftIcon={<Plus />} showTrailIcon>
+					Primary
+				</Button>
+			</div>
+
+			{/* Row 7: Right icon + trail icon */}
+			<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+				<h4 style={{ margin: 0 }}>Right Icon + Trail Icon</h4>
+				<Button variant={'primary'} size={'m'} rightIcon={<Refresh />} showTrailIcon>
+					Primary
+				</Button>
+			</div>
+
+			{/* Row 8: Both icons + trail icon */}
+			<div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+				<h4 style={{ margin: 0 }}>Both Icons + Trail Icon</h4>
+				<Button variant={'primary'} size={'m'} leftIcon={<Plus />} rightIcon={<Refresh />} showTrailIcon>
+					Primary
+				</Button>
+			</div>
+		</div>
+	),
+}
 /**Attempt to render all button types without pseudo-classes (no focus/active/hover states). */
 export const AllVariants: Story = {
 	render: () => (

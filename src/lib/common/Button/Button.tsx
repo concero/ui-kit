@@ -107,7 +107,7 @@ export const Button = forwardRef((props: TButtonProps, ref) => {
 		>
 			{!isLoading && leftIcon && <span className={cls.left_icon_wrap}>{leftIcon}</span>}
 			<span className={cls.inner_content}>{isLoading ? <Spinner type={typeSpinner} /> : children}</span>
-			{!isLoading && leftIcon && <span className={cls.right_icon_wrap}>{rightIcon}</span>}
+			{!isLoading && rightIcon && <span className={cls.right_icon_wrap}>{rightIcon}</span>}
 			{!isLoading && showTrailIcon && (
 				<span className={cls.trail_icon_wrap}>
 					<TrailArrow className={cls.trail_icon} />
