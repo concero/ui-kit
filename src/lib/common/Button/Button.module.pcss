@@ -9,6 +9,7 @@
 	background-color: var(--white);
 	width: min-content;
 	max-width: 100%;
+	box-sizing: border-box;
 	.inner_content {
 		padding: 3px 4px;
 		white-space: nowrap;
@@ -206,8 +207,7 @@
 			background-color: var(--color-danger-800);
 		}
 	}
-	&:disabled,
-	&[disabled] {
+	&.is_disabled {
 		background-color: var(--color-gray-50);
 		color: var(--color-gray-400);
 		pointer-events: none;

@@ -3,6 +3,7 @@ import Plus from '@/lib/assets/icons/monochrome/Plus.svg?react'
 import Refresh from '@/lib/assets/icons/monochrome/Refresh.svg?react'
 import { Button, TButtonSize, TButtonVariant } from './Button'
 import { UnionToTuple } from '@/lib/utils/types/UnionToTuple'
+import { Switch } from '../Switch/Switch'
 
 const sizes: UnionToTuple<TButtonSize> = ['s', 'm', 'l', 'xl']
 
@@ -14,6 +15,7 @@ const variants: UnionToTuple<TButtonVariant> = [
 	'tetrary',
 	'danger',
 ]
+const as = ['div', 'button']
 const meta: Meta<typeof Button> = {
 	component: Button,
 	tags: ['autodocs'],
@@ -39,6 +41,10 @@ const meta: Meta<typeof Button> = {
 				},
 			},
 		},
+		as: {
+			control: 'select',
+			options: as,
+		},
 		isHovered: {
 			control: 'boolean',
 		},
@@ -46,6 +52,9 @@ const meta: Meta<typeof Button> = {
 			control: 'boolean',
 		},
 		isFocused: {
+			control: 'boolean',
+		},
+		isDisabled: {
 			control: 'boolean',
 		},
 	},
@@ -62,6 +71,16 @@ export const Primary: Story = {
 		leftIcon: <Plus />,
 		rightIcon: <Refresh />,
 		onClick: () => alert('Click'),
+		children: 'Custom value',
+	},
+}
+export const PrimaryWithAnotherComponent: Story = {
+	args: {
+		isFull: false,
+		showTrailIcon: true,
+		size: 's',
+		leftIcon: <Plus />,
+		rightIcon: <Switch />,
 		children: 'Custom value',
 	},
 }
@@ -84,9 +103,7 @@ export const Disabled: Story = {
 	args: {
 		size: 's',
 		showTrailIcon: true,
-		htmlButtonProps: {
-			disabled: true,
-		},
+		isDisabled: true,
 		children: 'Custom value',
 	},
 }
@@ -151,13 +168,7 @@ export const AllVariants: Story = {
 							<Button variant={variant} size={size} isLoading>
 								Loading
 							</Button>
-							<Button
-								variant={variant}
-								size={size}
-								htmlButtonProps={{
-									disabled: true,
-								}}
-							>
+							<Button variant={variant} size={size} isDisabled={true}>
 								Disabled
 							</Button>
 						</div>

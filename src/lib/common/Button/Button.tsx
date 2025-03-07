@@ -6,6 +6,8 @@ import TrailArrow from '@/lib/assets/icons/monochrome/TrailArrow.svg?react'
 type TClassname = string
 export type TButtonSize = 's' | 'm' | 'l' | 'xl'
 export type TButtonVariant = 'primary' | 'secondary_color' | 'secondary' | 'tetrary_color' | 'tetrary' | 'danger'
+type ButtonOrDiv = 'button' | 'div'
+
 interface IButtonProps {
 	size?: TButtonSize
 	variant?: TButtonVariant
@@ -14,17 +16,19 @@ interface IButtonProps {
 	className?: string
 	isFull?: boolean
 	showTrailIcon?: boolean
-	disabled?: boolean
 	isLoading?: boolean
 	isHovered?: boolean
 	isPressed?: boolean
 	isFocused?: boolean
-	onClick?: React.MouseEventHandler<HTMLButtonElement>
-	htmlButtonProps?: Omit<ComponentProps<'button'>, 'className' | 'onClick'>
+	isDisabled?: boolean
+	onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLDivElement>
+	buttonProps?: Omit<ComponentProps<'button'>, 'className' | 'onClick' | 'ref'>
+	divProps?: Omit<ComponentProps<'div'>, 'className' | 'onClick' | 'ref'>
+	as?: ButtonOrDiv
 }
 export type TButtonProps = PropsWithChildren<IButtonProps>
 
-export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButtonProps, ref) => {
+export const Button = forwardRef((props: TButtonProps, ref) => {
 	const {
 		children,
 		className,
@@ -35,12 +39,14 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 		rightIcon,
 		isFull,
 		showTrailIcon,
-		disabled,
 		isHovered,
 		isPressed,
 		isFocused,
+		isDisabled,
 		onClick,
-		htmlButtonProps,
+		buttonProps,
+		divProps,
+		as: Component = 'button',
 	} = props
 	const sizeMap: Record<TButtonSize, TClassname> = {
 		l: cls.size_l,
@@ -78,7 +84,8 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 			break
 	}
 	return (
-		<button
+		<Component
+			//@ts-expect-error ref should be correct
 			ref={ref}
 			className={clsx(
 				cls.button,
@@ -90,12 +97,13 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 					[cls.is_hovered]: isHovered,
 					[cls.is_pressed]: isPressed,
 					[cls.is_focused]: isFocused,
+					[cls.is_disabled]: isDisabled,
 				},
 				className,
 			)}
-			disabled={disabled}
 			onClick={onClick}
-			{...htmlButtonProps}
+			{...(Component === 'button' ? buttonProps : {})}
+			{...(Component === 'div' ? divProps : {})}
 		>
 			{!isLoading && leftIcon && <span className={cls.left_icon_wrap}>{leftIcon}</span>}
 			<span className={cls.inner_content}>{isLoading ? <Spinner type={typeSpinner} /> : children}</span>
@@ -105,6 +113,6 @@ export const Button = forwardRef<HTMLButtonElement, TButtonProps>((props: TButto
 					<TrailArrow className={cls.trail_icon} />
 				</span>
 			)}
-		</button>
+		</Component>
 	)
 })

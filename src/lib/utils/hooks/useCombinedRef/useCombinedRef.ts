@@ -1,9 +1,9 @@
 import { type MutableRefObject, useCallback } from 'react'
 
-type AnyRef = MutableRefObject<HTMLElement | null> | ((element: HTMLElement | null) => void) | undefined | null
+type CombinedRef<T> = ((instance: T | null) => void) | React.MutableRefObject<T | null> | null | undefined
 
 /**
- * Используется для обьединения рефов и коллбек рефов
+ * Used for combine refs
  * @example
  * const {outerRef} = props;
  * const innerRef = useRef();
@@ -11,17 +11,19 @@ type AnyRef = MutableRefObject<HTMLElement | null> | ((element: HTMLElement | nu
  * ...
  * <Element ref={combinedRef}/>
  */
-export const useCombinedRef = (...refs: AnyRef[]) => {
-	const combinedRef = useCallback((element: HTMLElement | null) => {
-		refs.forEach(ref => {
-			if (ref === null || ref === undefined) return
-			if (typeof ref === 'function') {
-				ref(element)
-			} else {
-				ref.current = element
-			}
-		})
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, refs)
-	return combinedRef
+export const useCombinedRef = <T extends HTMLElement | null>(...refs: Array<CombinedRef<T>>) => {
+	return useCallback(
+		(element: T) => {
+			refs.forEach(ref => {
+				if (!ref) return
+
+				if (typeof ref === 'function') {
+					ref(element)
+				} else {
+					ref.current = element
+				}
+			})
+		},
+		[refs],
+	)
 }
