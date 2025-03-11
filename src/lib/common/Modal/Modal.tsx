@@ -70,17 +70,18 @@ export const Modal = forwardRef<HTMLElement, ModalProps>(
 				onClick={onClose}
 			>
 				<div
+					//@ts-expect-error TODO: Improve typeing
 					ref={combinedRef}
 					className={`${cls.container} ${className ?? ''} ${initialShow ? cls.container_show : ''} ${headless ? cls.headless : ''}`}
 					onClick={e => e.stopPropagation()}
 				>
 					{!headless && isVisible && (
 						<div className={cls.header}>
-							<IconButton size="m" variant="tetrary">
+							{/* <IconButton size="m" variant="tetrary">
 								<ArrowLeftIcon />
-							</IconButton>
+							</IconButton> */}
 							{typeof title == 'string' ? <h2 className={cls.title}>{title}</h2> : title}
-							<IconButton size="m" variant="secondary">
+							<IconButton size="m" variant="secondary" onClick={onClose}>
 								<CrossIcon />
 							</IconButton>
 						</div>
