@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import cls from './Input.module.pcss'
-import { ComponentProps, forwardRef, useId, useRef, useState } from 'react'
+import { ComponentProps, forwardRef, ReactNode, useId, useRef, useState } from 'react'
 import { useCombinedRef } from '@/lib/utils/hooks/useCombinedRef/useCombinedRef'
 export type TInputSize = 'm' | 'l' | 'xl'
 type TClassname = string
@@ -17,10 +17,10 @@ export type TInputProps = {
 	labelText?: string
 	subLabelText?: string
 	count?: TCountConfig
-	hintText?: string
+	hintText?: string | ReactNode
 	value?: string
 	id?: string
-	onChange?: (value: string) => void
+	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 	isDisabled?: boolean
 	isHovered?: boolean
 	isPressed?: boolean
@@ -78,7 +78,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 		if (!isDisabled) {
 			const value = e.target.value
 			setInnerValue(value)
-			onChange?.(value)
+			onChange?.(e)
 		}
 	}
 	const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

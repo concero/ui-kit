@@ -1,0 +1,26 @@
+.otp_container {
+	display: flex;
+	gap: 8px;
+}
+
+.otp_input {
+	width: 40px !important;
+	height: 40px !important;
+}
+
+.otp_input:focus {
+	border-color: #007bff;
+}
+
+.otp_input.is_filled {
+	border-color: #28a745;
+}
+
+.otp_input.is_error {
+	border-color: #dc3545;
+}
+
+.otp_container.is_disabled .otp_input {
+	background-color: #f8f9fa;
+	cursor: not-allowed;
+}
