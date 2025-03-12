@@ -1,0 +1,109 @@
+.input_wrap {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-xs);
+	width: min-content;
+	box-sizing: border-box;
+	.header_input {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-xs);
+		.label_wrap {
+			display: flex;
+			align-items: center;
+			flex-direction: row;
+			gap: var(--space-xxs);
+			width: 100%;
+			.label_text {
+				font: var(--font-heading-small);
+				color: var(--color-gray-700);
+			}
+			.sublabel_text {
+				font: var(--font-body-small);
+				color: var(--color-gray-500);
+			}
+		}
+		.word_counter {
+			font: var(--font-body-small);
+			color: var(--color-gray-500);
+		}
+	}
+	.input_field {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 8px;
+		width: min-content;
+		border-radius: var(--space-s);
+		background-color: var(--color-gray-50);
+		box-sizing: border-box;
+		color: var(--color-gray-500);
+		border: 1px solid transparent;
+		&:hover,
+		&.is_hovered {
+			border: 1px solid var(--color-gray-400);
+			cursor: text;
+		}
+		&:focus-visible,
+		&.is_focused {
+			border: 1px solid var(--color-gray-300);
+			outline: 2px solid var(--color-accent-500);
+			outline-offset: 2px;
+		}
+		&:active,
+		&.is_pressed {
+			border: 1px solid var(--color-accent-600);
+		}
+		&.is_disabled {
+			pointer-events: none;
+		}
+		&.is_error {
+			outline: 2px solid var(--color-danger-500);
+			outline-offset: 2px;
+		}
+		.input {
+			border: none;
+			background-color: transparent;
+			padding: 2px 4px;
+			min-height: 24px;
+			outline: none;
+			&::placeholder {
+				color: var(--color-gray-500);
+				font: var(--font-body-large);
+				line-height: 24px;
+			}
+		}
+		&.size_m {
+			padding: var(--space-xs) var(--space-s);
+			min-height: 40px;
+		}
+		&.size_l {
+			padding: var(--space-s) var(--space-m);
+			min-height: 48px;
+		}
+		&.size_xl {
+			padding: var(--space-m);
+			min-height: 56px;
+		}
+		.icon {
+			width: 16px;
+			height: 16px;
+		}
+	}
+	.footer_input {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: var(--space-xs);
+		color: var(--color-gray-500);
+		.icon_footer {
+			width: 16px;
+			height: 16px;
+		}
+		.hint_footer {
+			font: var(--font-body-medium);
+		}
+	}
+}

@@ -30,7 +30,7 @@ export const Headless: Story = {
 	},
 }
 
-export const PrimaryWithToggle: Story = {
+export const Toggle: Story = {
 	render: () => {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const [isOpen, setIsOpen] = useState(false)
@@ -38,9 +38,75 @@ export const PrimaryWithToggle: Story = {
 		return (
 			<div>
 				<button onClick={() => setIsOpen(true)}>Open modal</button>
+				<div
+					style={{
+						zIndex: 10,
+						background:
+							'linear-gradient(to right, #f4e8e8 1px, transparent 1px), linear-gradient(to bottom, #f4e8e8 1px, transparent 1px), linear-gradient(to right, #ffcccc 50%, transparent 50%), linear-gradient(to bottom, #ffcccc 50%, transparent 50%)',
+						backgroundSize: '20px 20px', // Размер ячеек сетки
+						minWidth: '100vw',
+						minHeight: '100vh',
+					}}
+				></div>
 				<Modal show={isOpen} title="Modal with button" position="center" onClose={() => setIsOpen(false)}>
 					<div style={{ backgroundColor: 'yellow', display: 'flex' }}>
-						<p>Content of modal.</p>
+						<div>Content of modal.</div>
+						<button onClick={() => setIsOpen(false)}>Close modal</button>
+					</div>
+				</Modal>
+			</div>
+		)
+	},
+}
+export const ToggleOverflowY: Story = {
+	render: () => {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		const [isOpen, setIsOpen] = useState(false)
+
+		return (
+			<div>
+				<button onClick={() => setIsOpen(true)}>Open modal</button>
+				<div
+					style={{
+						zIndex: 10,
+						background:
+							'linear-gradient(to right, #f4e8e8 1px, transparent 1px), linear-gradient(to bottom, #f4e8e8 1px, transparent 1px), linear-gradient(to right, #ffcccc 50%, transparent 50%), linear-gradient(to bottom, #ffcccc 50%, transparent 50%)',
+						backgroundSize: '20px 20px', // Размер ячеек сетки
+						minWidth: '100vw',
+						minHeight: '100vh',
+					}}
+				></div>
+				<Modal show={isOpen} title="Modal with button" position="center" onClose={() => setIsOpen(false)}>
+					<div style={{ backgroundColor: 'yellow', display: 'flex' }}>
+						<div style={{ height: '1200px' }}>Content of modфцвфцвфцвфцвфцвal.</div>
+						<button onClick={() => setIsOpen(false)}>Close modal</button>
+					</div>
+				</Modal>
+			</div>
+		)
+	},
+}
+export const ToggleOverflowYPrepare: Story = {
+	render: () => {
+		// eslint-disable-next-line react-hooks/rules-of-hooks
+		const [isOpen, setIsOpen] = useState(false)
+
+		return (
+			<div>
+				<button onClick={() => setIsOpen(true)}>Open modal</button>
+				<div
+					style={{
+						zIndex: 10,
+						background:
+							'linear-gradient(to right, #f4e8e8 1px, transparent 1px), linear-gradient(to bottom, #f4e8e8 1px, transparent 1px), linear-gradient(to right, #ffcccc 50%, transparent 50%), linear-gradient(to bottom, #ffcccc 50%, transparent 50%)',
+						backgroundSize: '20px 20px', // Размер ячеек сетки
+						minWidth: '100vw',
+						minHeight: '100vh',
+					}}
+				></div>
+				<Modal show={isOpen} title="Modal with button" position="center" onClose={() => setIsOpen(false)}>
+					<div style={{ backgroundColor: 'yellow', display: 'flex', maxHeight: '100%', overflow: 'auto' }}>
+						<div style={{ height: '1200px' }}>Content of modфцвфцвфцвфцвфцвal.</div>
 						<button onClick={() => setIsOpen(false)}>Close modal</button>
 					</div>
 				</Modal>

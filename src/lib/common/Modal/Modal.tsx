@@ -3,8 +3,7 @@ import cls from './Modal.module.pcss'
 import { useCombinedRef } from '@/lib/utils/hooks/useCombinedRef/useCombinedRef'
 import { IconButton } from '../IconButton/IconButton'
 import CrossIcon from '@/lib/assets/icons/CrossIcon.svg?react'
-import ArrowLeftIcon from '@/lib/assets/icons/ArrowLeftIcon.svg?react'
-export type ModalProps = PropsWithChildren<{
+export type TModalProps = PropsWithChildren<{
 	title?: ReactNode | string
 	show: boolean
 	onClose: () => void
@@ -20,7 +19,7 @@ const positionClassMap: Record<'top' | 'bottom' | 'center', string> = {
 	center: cls.position_center,
 }
 
-export const Modal = forwardRef<HTMLElement, ModalProps>(
+export const Modal = forwardRef<HTMLElement, TModalProps>(
 	(
 		{
 			title,
@@ -31,7 +30,7 @@ export const Modal = forwardRef<HTMLElement, ModalProps>(
 			position = 'center',
 			headless = false,
 			unmountContentOnClose,
-		}: ModalProps,
+		}: TModalProps,
 		ref,
 	) => {
 		const [isVisible, setIsVisible] = useState(initialShow)
@@ -77,9 +76,6 @@ export const Modal = forwardRef<HTMLElement, ModalProps>(
 				>
 					{!headless && isVisible && (
 						<div className={cls.header}>
-							{/* <IconButton size="m" variant="tetrary">
-								<ArrowLeftIcon />
-							</IconButton> */}
 							{typeof title == 'string' ? <h2 className={cls.title}>{title}</h2> : title}
 							<IconButton size="m" variant="secondary" onClick={onClose}>
 								<CrossIcon />
