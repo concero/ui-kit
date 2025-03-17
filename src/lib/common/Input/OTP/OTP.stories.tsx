@@ -21,6 +21,8 @@ const meta: Meta<typeof OTP> = {
 			description: 'Type of the input fields',
 			defaultValue: 'text',
 		},
+
+		isError: { control: 'boolean', description: 'Error true/false', defaultValue: false },
 		skipDefaultStyles: { control: 'boolean', description: 'Disable default styles' },
 	},
 }
@@ -29,12 +31,14 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
-	render: () => {
+	render: args => {
+		console.log('args:', args)
+
 		const [{ otp, numInputs, placeholder, inputType }, setConfig] = useState({
 			otp: '',
 			numInputs: 5,
 			separator: '-',
-			placeholder: '',
+			placeholder: '-----',
 			inputType: 'text' as const,
 		})
 
@@ -44,6 +48,7 @@ export const Primary: Story = {
 
 		return (
 			<OTP
+				isError={args?.isError}
 				numInputs={numInputs}
 				onChange={handleOTPChange}
 				value={otp}

@@ -32,7 +32,12 @@ export type TInputProps = {
 		'className' | 'onClick' | 'ref' | 'onChange' | 'placeholder' | 'value' | 'id'
 	>
 }
-// TODO: Need to implement supported text formats, numbers, and characters.
+/**
+ * TODO:
+ * 1. Need to implement supported text formats, numbers, and characters.
+ * 2. Add support falsy states for isPressed/isActive/isDisabled/isHovered/isFocused/isError.
+ * - For example disable border changing on isPressed - false
+ * */
 export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 	const {
 		className,
@@ -92,6 +97,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 		l: cls.size_l,
 		xl: cls.size_xl,
 	}
+
 	return (
 		<div className={cls.input_wrap}>
 			{showHeader && (
@@ -153,7 +159,11 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 			</div>
 
 			{showFooter && (
-				<div className={cls.footer_input}>
+				<div
+					className={clsx(cls.footer_input, {
+						[cls.hint_error_state]: isError,
+					})}
+				>
 					{iconHint && <span className={cls.icon_footer}>{iconHint}</span>}
 					<span className={cls.hint_footer}>{hintText}</span>
 				</div>

@@ -24,6 +24,7 @@ export type TOTPProps = {
 	inputType?: TAllowedInputTypes
 	/** Do not apply the default styles to the inputs, will be removed in future versions */
 	skipDefaultStyles?: boolean // TODO: Remove in next major release
+	isError?: boolean
 }
 
 const isStyleObject = (obj: unknown) => typeof obj === 'object' && obj !== null
@@ -47,6 +48,7 @@ export const OTP = ({
 	renderSeparator,
 	placeholder,
 	containerStyle,
+	isError,
 }: TOTPProps) => {
 	const [activeInput, setActiveInput] = React.useState(0)
 	const inputRefs = React.useRef<Array<HTMLInputElement | null>>([])
@@ -216,7 +218,7 @@ export const OTP = ({
 	return (
 		<div
 			style={Object.assign(
-				{ display: 'flex', alignItems: 'center', gap: '10px' },
+				{ display: 'flex', alignItems: 'center', gap: '8px' },
 				isStyleObject(containerStyle) && containerStyle,
 			)}
 			className={typeof containerStyle === 'string' ? containerStyle : undefined}
@@ -240,6 +242,8 @@ export const OTP = ({
 							onInput: handleInputChange,
 							inputMode: isInputNum ? 'numeric' : 'text',
 						}}
+						isPressed={false}
+						isError={isError}
 						className={cls.otp_input}
 					/>
 					{index < numInputs - 1 &&
