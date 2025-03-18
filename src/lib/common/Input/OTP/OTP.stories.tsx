@@ -32,8 +32,6 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
 	render: args => {
-		console.log('args:', args)
-
 		const [{ otp, numInputs, placeholder, inputType }, setConfig] = useState({
 			otp: '',
 			numInputs: 5,

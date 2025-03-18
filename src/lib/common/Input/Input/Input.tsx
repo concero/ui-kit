@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import cls from './Input.module.pcss'
-import { ComponentProps, forwardRef, ReactNode, useId, useRef, useState } from 'react'
+import { ComponentProps, forwardRef, ReactNode, useEffect, useId, useRef, useState } from 'react'
 import { useCombinedRef } from '@/lib/utils/hooks/useCombinedRef/useCombinedRef'
 export type TInputSize = 'm' | 'l' | 'xl'
 type TClassname = string
@@ -62,8 +62,11 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 	} = props
 	//Inner states
 	const [innerValue, setInnerValue] = useState(value ?? '')
+	const [innerIsActive, setInnerIsActive] = useState(false)
+
 	const counterRef = useRef(0)
 	const inputRef = useRef<HTMLInputElement>(null)
+	const wrapperRef = useRef<HTMLDivElement>(null)
 	const combinedRef = useCombinedRef(ref, inputRef)
 	const inputGeneratedId = useId()
 	const inputId = id ?? inputGeneratedId
@@ -92,6 +95,25 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 		}
 		onClick?.(e)
 	}
+
+	const handleMouseDown = () => {
+		if (!isDisabled) {
+			setInnerIsActive(true)
+		}
+	}
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+				setInnerIsActive(false)
+			}
+		}
+
+		document.addEventListener('mousedown', handleClickOutside)
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [])
 	const sizeMap: Record<TInputSize, TClassname> = {
 		m: cls.size_m,
 		l: cls.size_l,
@@ -114,6 +136,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 				</div>
 			)}
 			<div
+				ref={wrapperRef}
 				tabIndex={isDisabled ? -1 : 0}
 				role="textbox"
 				aria-invalid={isError}
@@ -126,14 +149,16 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 							inputRef.current.focus()
 						}
 						inputRef.current.focus()
+						setInnerIsActive(true)
 					}
 				}}
+				onMouseDown={handleMouseDown}
 				className={clsx(
 					cls.input_field,
 					sizeMap[size],
 					{
 						[cls.is_hovered]: isHovered,
-						[cls.is_pressed]: isPressed,
+						[cls.is_pressed]: isPressed || innerIsActive,
 						[cls.is_focused]: isFocused,
 						[cls.is_disabled]: isDisabled,
 						[cls.is_error]: isError,
