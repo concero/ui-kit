@@ -72,6 +72,9 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 	const inputId = id ?? inputGeneratedId
 	const showHeader = true
 	const showFooter = true
+	const isLocalFocused = isFocused || document.activeElement === inputRef.current
+
+	const showPlacholder = !innerIsActive && !isLocalFocused
 
 	//The counting is done outside the functions, in the component body,
 	// so that if onChange returns the same string, the counter does not increment.
@@ -85,6 +88,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (!isDisabled) {
 			const value = e.target.value
+			setInnerIsActive(true)
 			setInnerValue(value)
 			onChange?.(e)
 		}
@@ -146,10 +150,8 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 					if (!isDisabled && inputRef.current) {
 						if (e.key === 'Enter' || e.key === ' ') {
 							e.preventDefault()
-							inputRef.current.focus()
 						}
 						inputRef.current.focus()
-						setInnerIsActive(true)
 					}
 				}}
 				onMouseDown={handleMouseDown}
@@ -177,7 +179,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 					type="text"
 					ref={combinedRef}
 					className={cls.input}
-					placeholder={placeholder}
+					placeholder={showPlacholder ? placeholder : ''}
 					{...inputProps}
 				/>
 				{icon && <div className={cls.icon}>{icon}</div>}
