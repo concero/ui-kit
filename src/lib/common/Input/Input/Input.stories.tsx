@@ -95,6 +95,19 @@ export const Variants: Story = {
 					}}
 					hintText="Hint text"
 				/>
+				<Input
+					size="m"
+					isSuccess
+					placeholder="Success"
+					icon={<Plus />}
+					iconHint={<Plus />}
+					labelText="Label"
+					subLabelText="Help text"
+					count={{
+						max: 10,
+					}}
+					hintText="Hint text"
+				/>
 			</div>
 			<div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 				<Input
@@ -161,6 +174,19 @@ export const Variants: Story = {
 					}}
 					hintText="Hint text"
 				/>
+				<Input
+					size="l"
+					isSuccess
+					placeholder="Success"
+					icon={<Plus />}
+					iconHint={<Plus />}
+					labelText="Label"
+					subLabelText="Help text"
+					count={{
+						max: 10,
+					}}
+					hintText="Hint text"
+				/>
 			</div>
 			<div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 				<Input
@@ -218,6 +244,19 @@ export const Variants: Story = {
 					size="xl"
 					isError
 					placeholder="Error"
+					icon={<Plus />}
+					labelText="Label"
+					subLabelText="Help text"
+					count={{
+						max: 10,
+					}}
+					iconHint={<Plus />}
+					hintText="Hint text"
+				/>
+				<Input
+					size="xl"
+					isSuccess
+					placeholder="Success"
 					icon={<Plus />}
 					labelText="Label"
 					subLabelText="Help text"
