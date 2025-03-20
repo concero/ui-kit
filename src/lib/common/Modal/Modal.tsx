@@ -10,6 +10,7 @@ export type TModalProps = PropsWithChildren<{
 	className?: string
 	position?: 'top' | 'bottom' | 'center'
 	headless?: boolean
+	/**@default false */
 	unmountContentOnClose?: boolean
 }>
 
@@ -29,7 +30,7 @@ export const Modal = forwardRef<HTMLElement, TModalProps>(
 			className,
 			position = 'center',
 			headless = false,
-			unmountContentOnClose,
+			unmountContentOnClose = false,
 		}: TModalProps,
 		ref,
 	) => {

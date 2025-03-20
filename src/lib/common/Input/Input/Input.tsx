@@ -10,7 +10,9 @@ type TCountConfig = {
 }
 export type TInputProps = {
 	className?: string
+	classNameWrap?: string
 	size?: TInputSize
+	maxWidth?: boolean
 	icon?: React.ReactNode
 	iconHint?: React.ReactNode
 	placeholder?: string
@@ -26,6 +28,7 @@ export type TInputProps = {
 	isPressed?: boolean
 	isFocused?: boolean
 	isError?: boolean
+	isSuccess?: boolean
 	onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 	inputProps?: Omit<
 		ComponentProps<'input'>,
@@ -41,6 +44,7 @@ export type TInputProps = {
 export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 	const {
 		className,
+		classNameWrap,
 		size = 'm',
 		icon,
 		iconHint,
@@ -57,6 +61,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 		isPressed,
 		isFocused,
 		isError,
+		isSuccess,
 		onClick,
 		inputProps,
 	} = props
@@ -125,7 +130,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 	}
 
 	return (
-		<div className={cls.input_wrap}>
+		<div className={clsx(cls.input_wrap, classNameWrap)}>
 			{showHeader && (
 				<div className={cls.header_input}>
 					<div className={cls.label_wrap}>
@@ -189,6 +194,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 				<div
 					className={clsx(cls.footer_input, {
 						[cls.hint_error_state]: isError,
+						[cls.hint_success_state]: isSuccess,
 					})}
 				>
 					{iconHint && <span className={cls.icon_footer}>{iconHint}</span>}
