@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { OTP } from './OTP'
 import { useState } from 'react'
 
+import Plus from '@/lib/assets/icons/monochrome/Plus.svg?react'
 const meta: Meta<typeof OTP> = {
 	component: OTP,
 	tags: ['autodocs'],
@@ -51,6 +52,43 @@ export const Primary: Story = {
 				placeholder={placeholder}
 				inputType={inputType}
 				shouldAutoFocus
+			/>
+		)
+	},
+}
+export const PrimaryFull: Story = {
+	render: args => {
+		const [{ otp, numInputs, placeholder, inputType }, setConfig] = useState({
+			otp: '',
+			numInputs: 5,
+			separator: '-',
+			placeholder: '-----',
+			inputType: 'number' as const,
+		})
+
+		const handleOTPChange = (otp: string) => {
+			setConfig(prevConfig => ({ ...prevConfig, otp }))
+		}
+		const additionalArgs = {
+			icon: <Plus />,
+			iconHint: <Plus />,
+			hintText: 'Hint text',
+			count: {
+				max: 10,
+			},
+			labelText: 'Label',
+			subLabelText: 'Help text',
+		}
+		return (
+			<OTP
+				isError={args?.isError}
+				numInputs={numInputs}
+				onChange={handleOTPChange}
+				value={otp}
+				placeholder={placeholder}
+				inputType={inputType}
+				shouldAutoFocus
+				{...additionalArgs}
 			/>
 		)
 	},

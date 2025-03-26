@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import cls from './Input.module.pcss'
 import { ComponentProps, forwardRef, ReactNode, useEffect, useId, useRef, useState } from 'react'
 import { useCombinedRef } from '@/lib/utils/hooks/useCombinedRef/useCombinedRef'
+import { MetaInput } from '../MetaInput/MetaInput'
 export type TInputSize = 'm' | 'l' | 'xl'
 type TClassname = string
 type TCountConfig = {
@@ -65,7 +66,6 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 		onClick,
 		inputProps,
 	} = props
-	console.log('value:', value, 'isPressed:', isPressed)
 
 	//Inner states
 	const [innerValue, setInnerValue] = useState(value ?? '')
@@ -77,8 +77,6 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 	const combinedRef = useCombinedRef(ref, inputRef)
 	const inputGeneratedId = useId()
 	const inputId = id ?? inputGeneratedId
-	const showHeader = Boolean(labelText || subLabelText || count)
-	const showFooter = Boolean(hintText || iconHint)
 	const isLocalFocused = isFocused || document.activeElement === inputRef.current
 
 	const showPlacholder = !innerIsActive && !isLocalFocused
@@ -134,76 +132,62 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 
 	return (
 		<div className={clsx(cls.input_wrap, classNameWrap)}>
-			{showHeader && (
-				<div className={cls.header_input}>
-					<div className={cls.label_wrap}>
-						<span className={cls.label_text}>{labelText}</span>
-						<span className={cls.sublabel_text}>{subLabelText}</span>
-					</div>
-					{count && (
-						<span className={cls.word_counter}>
-							{counterRef.current}/{count.max}
-						</span>
-					)}
-				</div>
-			)}
-			<div
-				ref={wrapperRef}
-				tabIndex={isDisabled ? -1 : 0}
-				role="textbox"
-				aria-invalid={isError}
-				aria-disabled={isDisabled}
-				aria-label={placeholder || 'Text input'}
-				onKeyDown={e => {
-					if (!isDisabled && inputRef.current) {
-						if (e.key === 'Enter' || e.key === ' ') {
-							e.preventDefault()
-						}
-						inputRef.current.focus()
-					}
-				}}
-				onMouseDown={handleMouseDown}
-				className={clsx(
-					cls.input_field,
-					sizeMap[size],
-					{
-						[cls.is_hovered]: isHovered,
-						[cls.is_pressed]: isPressed !== undefined ? isPressed : isPressed || innerIsActive,
-						[cls.is_focused]: isFocused,
-						[cls.is_disabled]: isDisabled,
-						[cls.is_error]: isError,
-					},
-
-					className,
-				)}
-				onClick={handleClick}
+			<MetaInput
+				classNameWrap={classNameWrap}
+				count={count}
+				hintText={hintText}
+				iconHint={iconHint}
+				isError={isError}
+				isSuccess={isSuccess}
+				labelText={labelText}
+				subLabelText={subLabelText}
 			>
-				<input
-					tabIndex={-1}
-					id={inputId}
-					spellCheck={false}
-					value={value ?? innerValue}
-					onChange={handleChange}
-					type="text"
-					ref={combinedRef}
-					className={cls.input}
-					placeholder={showPlacholder ? placeholder : ''}
-					{...inputProps}
-				/>
-				{icon && <div className={cls.icon}>{icon}</div>}
-			</div>
-
-			{showFooter && (
 				<div
-					className={clsx(cls.footer_input, {
-						[cls.hint_error_state]: isError,
-						[cls.hint_success_state]: isSuccess,
-					})}
+					ref={wrapperRef}
+					tabIndex={isDisabled ? -1 : 0}
+					role="textbox"
+					aria-invalid={isError}
+					aria-disabled={isDisabled}
+					aria-label={placeholder || 'Text input'}
+					onKeyDown={e => {
+						if (!isDisabled && inputRef.current) {
+							if (e.key === 'Enter' || e.key === ' ') {
+								e.preventDefault()
+							}
+							inputRef.current.focus()
+						}
+					}}
+					onMouseDown={handleMouseDown}
+					className={clsx(
+						cls.input_field,
+						sizeMap[size],
+						{
+							[cls.is_hovered]: isHovered,
+							[cls.is_pressed]: isPressed !== undefined ? isPressed : isPressed || innerIsActive,
+							[cls.is_focused]: isFocused,
+							[cls.is_disabled]: isDisabled,
+							[cls.is_error]: isError,
+						},
+
+						className,
+					)}
+					onClick={handleClick}
 				>
-					{iconHint && <span className={cls.icon_footer}>{iconHint}</span>}
-					<span className={cls.hint_footer}>{hintText}</span>
+					<input
+						tabIndex={-1}
+						id={inputId}
+						spellCheck={false}
+						value={value ?? innerValue}
+						onChange={handleChange}
+						type="text"
+						ref={combinedRef}
+						className={cls.input}
+						placeholder={showPlacholder ? placeholder : ''}
+						{...inputProps}
+					/>
+					{icon && <div className={cls.icon}>{icon}</div>}
 				</div>
-			)}
+			</MetaInput>
 		</div>
 	)
 })

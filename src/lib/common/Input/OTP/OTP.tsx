@@ -1,6 +1,7 @@
 import cls from './OTP.module.pcss'
-import React, { useCallback, useEffect, useRef } from 'react'
-import { Input } from '../Input/Input'
+import React, { ComponentProps, ReactNode, useCallback, useEffect, useRef } from 'react'
+import { Input, TInputSize } from '../Input/Input'
+import { MetaInput } from '../MetaInput/MetaInput'
 
 type TAllowedInputTypes = 'password' | 'text' | 'number' | 'tel'
 export type TOTPProps = {
@@ -25,6 +26,22 @@ export type TOTPProps = {
 	/** Do not apply the default styles to the inputs, will be removed in future versions */
 	skipDefaultStyles?: boolean // TODO: Remove in next major release
 	isError?: boolean
+	className?: string
+	classNameWrap?: string
+	size?: TInputSize
+	maxWidth?: boolean
+	icon?: React.ReactNode
+	iconHint?: React.ReactNode
+	labelText?: string
+	subLabelText?: string
+	hintText?: string | ReactNode
+	id?: string
+	isDisabled?: boolean
+	isHovered?: boolean
+	isPressed?: boolean
+	isFocused?: boolean
+	isSuccess?: boolean
+	onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
 
 /**This solution is taken from [https://github.com/devfolioco/react-otp-input/blob/main/example/src/App.tsx].
@@ -46,6 +63,12 @@ export const OTP = ({
 	renderSeparator,
 	placeholder,
 	isError,
+	classNameWrap,
+	iconHint,
+	labelText,
+	subLabelText,
+	hintText,
+	isSuccess,
 }: TOTPProps) => {
 	const [activeInput, setActiveInput] = React.useState(0)
 	const inputRefs = useRef<Array<HTMLInputElement | null>>([])
@@ -189,31 +212,41 @@ export const OTP = ({
 		handleOTPChange(otp)
 	}
 	return (
-		<div className={cls.otp_container} onPaste={onPaste}>
-			{Array.from({ length: numInputs }, (_, index) => index).map(index => (
-				<React.Fragment key={index}>
-					<Input
-						value={getOTPValue()[index] ?? ''}
-						placeholder={getPlaceholderValue()?.[index] ?? undefined}
-						ref={element => (inputRefs.current[index] = element)}
-						onChange={handleChange}
-						onClick={() => focusInput(index)}
-						inputProps={{
-							onPaste: handlePaste,
-							autoComplete: 'off',
-							'aria-label': `Please enter OTP character ${index + 1}`,
-							type: 'text',
-							onInput: handleInputChange,
-							inputMode: isInputNum ? 'numeric' : 'text',
-						}}
-						isPressed={activeInput === index}
-						isError={isError}
-						className={cls.otp_input}
-					/>
-					{index < numInputs - 1 &&
-						(typeof renderSeparator === 'function' ? renderSeparator(index) : renderSeparator)}
-				</React.Fragment>
-			))}
-		</div>
+		<MetaInput
+			classNameWrap={classNameWrap}
+			hintText={hintText}
+			iconHint={iconHint}
+			isError={isError}
+			isSuccess={isSuccess}
+			labelText={labelText}
+			subLabelText={subLabelText}
+		>
+			<div className={cls.otp_container} onPaste={onPaste}>
+				{Array.from({ length: numInputs }, (_, index) => index).map(index => (
+					<React.Fragment key={index}>
+						<Input
+							value={getOTPValue()[index] ?? ''}
+							placeholder={getPlaceholderValue()?.[index] ?? undefined}
+							ref={element => (inputRefs.current[index] = element)}
+							onChange={handleChange}
+							onClick={() => focusInput(index)}
+							inputProps={{
+								onPaste: handlePaste,
+								autoComplete: 'off',
+								'aria-label': `Please enter OTP character ${index + 1}`,
+								type: 'text',
+								onInput: handleInputChange,
+								inputMode: isInputNum ? 'numeric' : 'text',
+							}}
+							isPressed={activeInput === index}
+							isError={isError}
+							className={cls.otp_input}
+						/>
+						{index < numInputs - 1 &&
+							(typeof renderSeparator === 'function' ? renderSeparator(index) : renderSeparator)}
+					</React.Fragment>
+				))}
+			</div>
+		</MetaInput>
 	)
 }
