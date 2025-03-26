@@ -14,7 +14,6 @@ const meta: Meta<typeof OTP> = {
 		shouldAutoFocus: { control: 'boolean', description: 'Auto-focus the first input', defaultValue: true },
 		placeholder: { control: 'text', description: 'Placeholder for inputs' },
 		renderSeparator: { control: 'text', description: 'Separator between inputs' },
-		containerStyle: { control: 'object', description: 'Styles for the container' },
 		inputType: {
 			control: 'select',
 			options: ['text', 'tel', 'number'],
@@ -23,7 +22,6 @@ const meta: Meta<typeof OTP> = {
 		},
 
 		isError: { control: 'boolean', description: 'Error true/false', defaultValue: false },
-		skipDefaultStyles: { control: 'boolean', description: 'Disable default styles' },
 	},
 }
 
@@ -37,7 +35,7 @@ export const Primary: Story = {
 			numInputs: 5,
 			separator: '-',
 			placeholder: '-----',
-			inputType: 'text' as const,
+			inputType: 'number' as const,
 		})
 
 		const handleOTPChange = (otp: string) => {

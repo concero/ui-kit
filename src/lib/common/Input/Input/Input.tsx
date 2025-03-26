@@ -65,6 +65,8 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 		onClick,
 		inputProps,
 	} = props
+	console.log('value:', value, 'isPressed:', isPressed)
+
 	//Inner states
 	const [innerValue, setInnerValue] = useState(value ?? '')
 	const [innerIsActive, setInnerIsActive] = useState(false)
@@ -75,8 +77,8 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 	const combinedRef = useCombinedRef(ref, inputRef)
 	const inputGeneratedId = useId()
 	const inputId = id ?? inputGeneratedId
-	const showHeader = true
-	const showFooter = true
+	const showHeader = Boolean(labelText || subLabelText || count)
+	const showFooter = Boolean(hintText || iconHint)
 	const isLocalFocused = isFocused || document.activeElement === inputRef.current
 
 	const showPlacholder = !innerIsActive && !isLocalFocused
@@ -102,6 +104,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 		if (!isDisabled && inputRef.current) {
 			inputRef.current.focus()
 		}
+
 		onClick?.(e)
 	}
 
@@ -165,7 +168,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 					sizeMap[size],
 					{
 						[cls.is_hovered]: isHovered,
-						[cls.is_pressed]: isPressed || innerIsActive,
+						[cls.is_pressed]: isPressed !== undefined ? isPressed : isPressed || innerIsActive,
 						[cls.is_focused]: isFocused,
 						[cls.is_disabled]: isDisabled,
 						[cls.is_error]: isError,
