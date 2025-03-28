@@ -192,11 +192,7 @@ export const OTP = ({
 			.slice(0, numInputs - activeInput)
 			.split('')
 
-		// Prevent pasting if the clipboard data contains non-numeric values for number inputs
-		console.log('pastedData:', pastedData)
-
 		if (isInputNum && pastedData.some(value => isNaN(Number(value)))) {
-			console.log('pastedData.some:', true)
 			return
 		}
 

@@ -38,7 +38,7 @@ export default defineConfig({
 	plugins: [
 		react(),
 		tsconfigPaths(),
-		dts({ tsconfigPath: './tsconfig.app.json' }),
+		dts({ tsconfigPath: './tsconfig.app.json', exclude: ['**/*.stories.tsx'] }),
 		cssInjectedByJsPlugin(),
 		stylelint({
 			fix: true,
@@ -70,7 +70,7 @@ export default defineConfig({
 			formats: ['es', 'cjs'],
 		},
 		rollupOptions: {
-			external: ['react', 'react-dom'],
+			external: ['react', 'react-dom', /\.stories\.[tj]sx?$/],
 			output: {
 				globals: {
 					react: 'React',
