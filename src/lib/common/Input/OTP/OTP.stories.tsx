@@ -92,6 +92,7 @@ export const PrimaryFull: Story = {
 				placeholder={placeholder}
 				inputType={inputType}
 				shouldAutoFocus
+				size="l"
 				{...additionalArgs}
 			/>
 		)

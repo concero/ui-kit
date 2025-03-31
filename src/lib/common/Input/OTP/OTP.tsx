@@ -2,6 +2,7 @@ import cls from './OTP.module.pcss'
 import React, { ReactNode, useCallback, useEffect, useRef } from 'react'
 import { Input, TInputSize } from '../Input/Input'
 import { MetaInput } from '../MetaInput/MetaInput'
+import clsx from 'clsx'
 
 type TAllowedInputTypes = 'password' | 'text' | 'number' | 'tel'
 export type TOTPProps = {
@@ -43,7 +44,7 @@ export type TOTPProps = {
  */
 export const OTP = ({
 	isDisabled,
-	size,
+	size = 'l',
 	value = '',
 	numInputs = 4,
 	onChange,
@@ -197,6 +198,12 @@ export const OTP = ({
 		focusInput(nextActiveInput)
 		handleOTPChange(otp)
 	}
+	const sizeMap: Record<TInputSize, string> = {
+		m: cls.size_m,
+		l: cls.size_l,
+		xl: cls.size_xl,
+	}
+
 	return (
 		<MetaInput
 			classNameWrap={classNameWrap}
@@ -227,7 +234,7 @@ export const OTP = ({
 							}}
 							isPressed={activeInput === index}
 							isError={isError}
-							className={cls.otp_input}
+							className={clsx(cls.otp_input, sizeMap[size])}
 							size={size}
 						/>
 						{index < numInputs - 1 &&
