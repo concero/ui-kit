@@ -57,12 +57,16 @@ export const Primary: Story = {
 	},
 }
 export const PrimaryFull: Story = {
+	args: {
+		numInputs: 6,
+	},
+
 	render: args => {
 		const [{ otp, numInputs, placeholder, inputType }, setConfig] = useState({
 			otp: '',
-			numInputs: 5,
+			numInputs: 6,
 			separator: '-',
-			placeholder: '-----',
+			placeholder: '------',
 			inputType: 'number' as const,
 		})
 

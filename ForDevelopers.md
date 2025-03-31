@@ -61,7 +61,7 @@ If we update **Storybook configs**, it won't impact projects that install the li
 If the changes are **only for developers**, there's **no need to bump the version**!
 
 ## Core Component Principles
-
+- **Use this reccomendations https://www.w3.org/WAI/ARIA/apg/patterns/**
 - **Extensibility and Flexibility**: Follow the **Open-Closed Principle** from SOLID — components should be open for extension but closed for modification.
 - **Style Overriding**:
     - An external `className` should **override** the component’s internal styles.

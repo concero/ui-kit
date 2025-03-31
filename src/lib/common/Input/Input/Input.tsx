@@ -13,7 +13,6 @@ export type TInputProps = {
 	className?: string
 	classNameWrap?: string
 	size?: TInputSize
-	maxWidth?: boolean
 	icon?: React.ReactNode
 	iconHint?: React.ReactNode
 	placeholder?: string

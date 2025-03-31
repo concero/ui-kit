@@ -1,5 +1,5 @@
 import cls from './OTP.module.pcss'
-import React, { ComponentProps, ReactNode, useCallback, useEffect, useRef } from 'react'
+import React, { ReactNode, useCallback, useEffect, useRef } from 'react'
 import { Input, TInputSize } from '../Input/Input'
 import { MetaInput } from '../MetaInput/MetaInput'
 
@@ -19,29 +19,17 @@ export type TOTPProps = {
 	placeholder?: string
 	/** Function to render the separator */
 	renderSeparator?: ((index: number) => React.ReactNode) | React.ReactNode
-	/** Style for the container */
-	containerStyle?: React.CSSProperties | string
 	/** The type that will be passed to the input being rendered */
 	inputType?: TAllowedInputTypes
-	/** Do not apply the default styles to the inputs, will be removed in future versions */
-	skipDefaultStyles?: boolean // TODO: Remove in next major release
 	isError?: boolean
-	className?: string
 	classNameWrap?: string
 	size?: TInputSize
-	maxWidth?: boolean
-	icon?: React.ReactNode
 	iconHint?: React.ReactNode
 	labelText?: string
 	subLabelText?: string
 	hintText?: string | ReactNode
-	id?: string
 	isDisabled?: boolean
-	isHovered?: boolean
-	isPressed?: boolean
-	isFocused?: boolean
 	isSuccess?: boolean
-	onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 }
 
 /**This solution is taken from [https://github.com/devfolioco/react-otp-input/blob/main/example/src/App.tsx].
@@ -54,6 +42,8 @@ export type TOTPProps = {
 	4. Add Ctrl+Z for undoing the last insertion.
  */
 export const OTP = ({
+	isDisabled,
+	size,
 	value = '',
 	numInputs = 4,
 	onChange,
@@ -221,6 +211,7 @@ export const OTP = ({
 				{Array.from({ length: numInputs }, (_, index) => index).map(index => (
 					<React.Fragment key={index}>
 						<Input
+							isDisabled={isDisabled}
 							value={getOTPValue()[index] ?? ''}
 							placeholder={getPlaceholderValue()?.[index] ?? undefined}
 							ref={element => (inputRefs.current[index] = element)}
@@ -237,6 +228,7 @@ export const OTP = ({
 							isPressed={activeInput === index}
 							isError={isError}
 							className={cls.otp_input}
+							size={size}
 						/>
 						{index < numInputs - 1 &&
 							(typeof renderSeparator === 'function' ? renderSeparator(index) : renderSeparator)}
