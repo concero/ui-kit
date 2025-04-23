@@ -12,3 +12,33 @@
 	--color-accent-800: #2b13a8;
 	--color-accent-900: #210b5f;
 }
+// colors also store in src/lib/styles/variables.pcss
+[data-theme='light'] {
+	/*Accent colors*/
+	--color-accent-25: #f8f7fe;
+	--color-accent-50: #f3f1fe;
+	--color-accent-100: #efebfe;
+	--color-accent-200: #d9d2fb;
+	--color-accent-300: #c6bcf9;
+	--color-accent-400: #ad9ff6;
+	--color-accent-500: #9e80f1;
+	--color-accent-600: #7e54f1;
+	--color-accent-700: #5925e6;
+	--color-accent-800: #2b13a8;
+	--color-accent-900: #210b5f;
+}
+
+[data-theme='dark'] {
+	/*Accent colors*/
+	--color-accent-25: #0e0527;
+	--color-accent-50: #1b0a4c;
+	--color-accent-100: #240d66;
+	--color-accent-200: #2a0f76;
+	--color-accent-300: #3b15a6;
+	--color-accent-400: #521ee3;
+	--color-accent-500: #7b53ea;
+	--color-accent-600: #9677ee;
+	--color-accent-700: #baa5f4;
+	--color-accent-800: #d9cef9;
+	--color-accent-900: #f3f1fe;
+}
