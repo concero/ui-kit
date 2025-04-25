@@ -1,4 +1,3 @@
-import './styles/variables.pcss'
 import './assets/fonts/DM_Sans/typography-woff.css'
 export { ThemeProvider, useTheme } from './common/Theme'
 export type { TTheme, TThemeContext } from './common/Theme'
