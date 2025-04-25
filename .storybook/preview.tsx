@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/react'
 import { StyleDecorator } from '../src/lib/storybook/StyleDecorator'
 import { ThemeDecorator } from '../src/lib/storybook/ThemeDecorator'
-import { ThemeProvider, type TTheme } from '../src/lib'
+import { type TTheme } from '../src/lib'
 const themes: TTheme[] = ['light', 'dark']
 const preview: Preview = {
 	parameters: {
@@ -24,7 +24,7 @@ const preview: Preview = {
 			},
 		},
 	},
-	decorators: [StyleDecorator, Story => <ThemeProvider>{Story()}</ThemeProvider>, ThemeDecorator],
+	decorators: [StyleDecorator, ThemeDecorator],
 }
 
 export default preview
