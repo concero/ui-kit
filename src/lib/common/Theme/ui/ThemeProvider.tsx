@@ -1,13 +1,33 @@
 import { PropsWithChildren, useCallback, useEffect, useState } from 'react'
 import { themeList, TTheme, TThemeContext } from '../model/model'
 import { ThemeContext } from '../model/context'
-
+import clsx from 'clsx'
+import cls from './ThemeProvider.module.pcss'
 interface IThemeProviderProps {
+	/**
+	 * The initial theme for the application. If not provided, the theme will be determined
+	 * based on the value stored in localStorage or the system's preferred color scheme.
+	 */
 	initialTheme?: TTheme
+
+	/**
+	 * Settings for managing theme persistence in localStorage.
+	 * */
 	storageSettings?: {
+		/**
+		 * Whether to persist the selected theme in localStorage.
+		 * If true, the theme will be saved and restored on page reload.
+		 * @default true
+		 */
 		persist?: boolean
+
+		/**
+		 * The key under which the theme will be stored in localStorage.
+		 * @default 'app_theme'
+		 */
 		storageKey?: string
 	}
+	className?: string
 }
 const defaultTheme: TTheme = 'light'
 const defaultStorageKey = 'app_theme'
@@ -20,6 +40,7 @@ export const ThemeProvider = ({
 		persist: true,
 		storageKey: defaultStorageKey,
 	},
+	className,
 }: PropsWithChildren<IThemeProviderProps>) => {
 	const persist = storageSettings.persist ?? defaultPersist
 	const storageKey = storageSettings.storageKey ?? defaultStorageKey
@@ -84,7 +105,9 @@ export const ThemeProvider = ({
 
 	return (
 		<ThemeContext.Provider value={value}>
-			<div data-theme={theme}>{children}</div>
+			<div data-theme={theme} className={clsx(cls.wrap, className)}>
+				{children}
+			</div>
 		</ThemeContext.Provider>
 	)
 }
