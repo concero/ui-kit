@@ -1,8 +1,6 @@
 import { PropsWithChildren, useCallback, useEffect, useState } from 'react'
 import { themeList, TTheme, TThemeContext } from '../model/model'
 import { ThemeContext } from '../model/context'
-import clsx from 'clsx'
-import cls from './ThemeProvider.module.pcss'
 interface IThemeProviderProps {
 	/**
 	 * The initial theme for the application. If not provided, the theme will be determined
@@ -40,7 +38,6 @@ export const ThemeProvider = ({
 		persist: true,
 		storageKey: defaultStorageKey,
 	},
-	className,
 }: PropsWithChildren<IThemeProviderProps>) => {
 	const persist = storageSettings.persist ?? defaultPersist
 	const storageKey = storageSettings.storageKey ?? defaultStorageKey
@@ -69,6 +66,8 @@ export const ThemeProvider = ({
 			if (persist && typeof window !== 'undefined') {
 				localStorage.setItem(storageKey, newTheme)
 			}
+			document.documentElement.setAttribute('data-theme', newTheme)
+			document.documentElement.style.colorScheme = newTheme
 			setThemeState(newTheme)
 		},
 		[persist, storageKey],
@@ -103,11 +102,5 @@ export const ThemeProvider = ({
 		toggleTheme,
 	}
 
-	return (
-		<ThemeContext.Provider value={value}>
-			<div data-theme={theme} className={clsx(cls.wrap, className)}>
-				{children}
-			</div>
-		</ThemeContext.Provider>
-	)
+	return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
