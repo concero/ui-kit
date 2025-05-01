@@ -12,9 +12,8 @@
 	z-index: 10000;
 	pointer-events: none;
 	transition: opacity 0.3s ease-in-out;
-	background-color: #333b3f;
-	opacity: 50%;
-	backdrop-filter: blur(25px);
+	background-color: rgba(51, 59, 63, 0.5);
+	opacity: 0;
 	&.overlay_show {
 		opacity: 1;
 		pointer-events: auto;
@@ -34,7 +33,7 @@
 }
 [data-theme='dark'] {
 	.overlay {
-		background-color: #1f2426;
+		background-color: rgba(31, 36, 38, 0.5);
 	}
 }
 
