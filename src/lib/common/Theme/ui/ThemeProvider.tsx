@@ -9,6 +9,14 @@ interface IThemeProviderProps {
 	initialTheme?: TTheme
 
 	/**
+	 * Whether to automatically adopt the system's preferred color scheme (dark/light)
+	 * when no initialTheme or saved theme is available.
+	 * If false, will fallback to defaultTheme instead of checking system preference.
+	 * @default true
+	 */
+	useSystemTheme?: boolean
+
+	/**
 	 * Settings for managing theme persistence in localStorage.
 	 * */
 	storageSettings?: {
@@ -34,6 +42,7 @@ const defaultPersist = true
 export const ThemeProvider = ({
 	children,
 	initialTheme,
+	useSystemTheme = true,
 	storageSettings = {
 		persist: true,
 		storageKey: defaultStorageKey,
@@ -43,22 +52,26 @@ export const ThemeProvider = ({
 	const storageKey = storageSettings.storageKey ?? defaultStorageKey
 
 	const [theme, setThemeState] = useState<TTheme>(() => {
-		// Initiate theme from locaStorage
+		// Check localStorage if persistence is enabled
 		if (persist && typeof window !== 'undefined') {
 			try {
 				const savedTheme = localStorage.getItem(storageKey)
 
 				if (savedTheme !== null && typeof savedTheme === 'string' && themeList.includes(savedTheme as TTheme)) {
 					return savedTheme as TTheme
-				} else {
-					return initialTheme ?? defaultTheme
 				}
 			} catch (error) {
 				console.warn('Error reading theme from localStorage:', error)
 				return initialTheme ?? defaultTheme
 			}
 		}
-		return initialTheme ?? defaultTheme
+		if (initialTheme) return initialTheme
+
+		if (useSystemTheme && typeof window !== 'undefined') {
+			const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+			return isSystemDark ? 'dark' : 'light'
+		}
+		return defaultTheme
 	})
 
 	const setTheme = useCallback(
@@ -86,7 +99,11 @@ export const ThemeProvider = ({
 			setTheme(e.matches ? 'dark' : 'light')
 		}
 
-		if (!initialTheme && persist) {
+		// Only subscribe to system theme changes if:
+		// - No initial theme provided
+		// - Persistence is enabled
+		// - System theme adoption is enabled
+		if (!initialTheme && persist && useSystemTheme) {
 			handleChange(mediaQuery as unknown as MediaQueryListEvent)
 			mediaQuery.addEventListener('change', handleChange)
 		}
@@ -94,7 +111,7 @@ export const ThemeProvider = ({
 		return () => {
 			mediaQuery.removeEventListener('change', handleChange)
 		}
-	}, [initialTheme, persist, setTheme])
+	}, [initialTheme, persist, setTheme, useSystemTheme])
 
 	const value: TThemeContext = {
 		theme,
