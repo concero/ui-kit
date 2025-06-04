@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Input } from './Input'
 import Plus from '@/lib/assets/icons/monochrome/Plus.svg?react'
 const meta: Meta<typeof Input> = {

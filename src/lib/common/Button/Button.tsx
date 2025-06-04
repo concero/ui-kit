@@ -1,3 +1,5 @@
+// TODO: Delete after 3 versions of showTrailIcon
+/* eslint-disable @typescript-eslint/no-deprecated */
 import { forwardRef, ReactNode, type ComponentProps, type PropsWithChildren } from 'react'
 import cls from './Button.module.pcss'
 import clsx from 'clsx'
@@ -15,7 +17,12 @@ interface IButtonProps {
 	rightIcon?: ReactNode
 	className?: string
 	isFull?: boolean
+	/**@deprecated */
 	showTrailIcon?: boolean
+	trailIcon?: {
+		show: boolean
+		icon?: ReactNode
+	}
 	isLoading?: boolean
 	isHovered?: boolean
 	isPressed?: boolean
@@ -39,6 +46,7 @@ export const Button = forwardRef((props: TButtonProps, ref) => {
 		rightIcon,
 		isFull,
 		showTrailIcon,
+		trailIcon,
 		isHovered,
 		isPressed,
 		isFocused,
@@ -108,9 +116,9 @@ export const Button = forwardRef((props: TButtonProps, ref) => {
 			{!isLoading && leftIcon && <span className={cls.left_icon_wrap}>{leftIcon}</span>}
 			<span className={cls.inner_content}>{isLoading ? <Spinner type={typeSpinner} /> : children}</span>
 			{!isLoading && rightIcon && <span className={cls.right_icon_wrap}>{rightIcon}</span>}
-			{!isLoading && showTrailIcon && (
+			{!isLoading && (showTrailIcon || trailIcon?.show) && (
 				<span className={cls.trail_icon_wrap}>
-					<TrailArrow className={cls.trail_icon} />
+					{trailIcon?.icon || <TrailArrow className={cls.trail_icon} />}
 				</span>
 			)}
 		</Component>

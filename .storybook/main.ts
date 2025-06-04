@@ -4,12 +4,7 @@ import { normalizePath } from 'vite'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 const config: StorybookConfig = {
 	stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-	addons: [
-		'@storybook/addon-onboarding',
-		'@storybook/addon-essentials',
-		'@chromatic-com/storybook',
-		'@storybook/addon-interactions',
-	],
+	addons: ['@storybook/addon-onboarding', '@chromatic-com/storybook', '@storybook/addon-docs'],
 	core: {
 		builder: '@storybook/builder-vite',
 	},

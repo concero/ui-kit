@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Tag, TTagSize, TTagVariant } from './Tag'
 import { UnionToTuple } from '@/lib/utils/types/UnionToTuple'
 const sizes: UnionToTuple<TTagSize> = ['s', 'm']

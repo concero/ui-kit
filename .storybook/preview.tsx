@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react'
+import type { Preview } from '@storybook/react-vite'
 import { StyleDecorator } from '../src/lib/storybook/StyleDecorator'
 import { ThemeDecorator } from '../src/lib/storybook/ThemeDecorator'
 import { type TTheme } from '../src/lib'

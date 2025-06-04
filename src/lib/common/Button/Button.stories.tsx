@@ -1,4 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react'
+// TODO: Delete after 3 versions of showTrailIcon
+/* eslint-disable @typescript-eslint/no-deprecated */
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import Plus from '@/lib/assets/icons/monochrome/Plus.svg?react'
 import Refresh from '@/lib/assets/icons/monochrome/Refresh.svg?react'
 import { Button, TButtonSize, TButtonVariant } from './Button'
@@ -112,6 +114,17 @@ export const IsFull: Story = {
 	args: {
 		size: 's',
 		showTrailIcon: true,
+		isFull: true,
+		children: 'Custom value',
+	},
+}
+export const IsFullWithCustomTrail: Story = {
+	args: {
+		size: 's',
+		trailIcon: {
+			show: true,
+			icon: <Refresh />,
+		},
 		isFull: true,
 		children: 'Custom value',
 	},

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-deprecated */
-import { StoryFn } from '@storybook/react'
+import { StoryFn } from '@storybook/react-vite'
 import { ThemeProvider, useTheme } from '../common/Theme'
 import { useEffect, useState } from 'react'
 
