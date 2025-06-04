@@ -43,7 +43,7 @@
 		"format:fix": "npx prettier . --write",
 		"sb": "storybook dev -p 6006 --no-open",
 		"sb:build": "storybook build",
-		"precommit": "npm run lint && npm run format:check",
+		"precommit": "npm run sb:build && npm run lint && npm run format:check",
 		"prepare": "husky"
 	},
 	"devDependencies": {
