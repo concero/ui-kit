@@ -1,12 +1,14 @@
 import clsx from 'clsx'
-import cls from './Input.module.pcss'
+import cls from './TextArea.module.pcss'
 import { ComponentProps, forwardRef, ReactNode, useEffect, useId, useRef, useState } from 'react'
 import { useCombinedRef } from '@/lib/utils/hooks/useCombinedRef/useCombinedRef'
 import { MetaInput } from '../MetaInput/MetaInput'
-import { TCountConfig } from '../model/types'
 export type TInputSize = 'm' | 'l' | 'xl'
 type TClassname = string
-
+type TCountConfig = {
+	max?: number
+	strategy?: (value: string) => number
+}
 export type TInputProps = {
 	className?: string
 	classNameWrap?: string
@@ -20,7 +22,7 @@ export type TInputProps = {
 	hintText?: string | ReactNode
 	value?: string
 	id?: string
-	onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+	onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
 	isDisabled?: boolean
 	isHovered?: boolean
 	isPressed?: boolean
@@ -29,7 +31,7 @@ export type TInputProps = {
 	isSuccess?: boolean
 	onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
 	inputProps?: Omit<
-		ComponentProps<'input'>,
+		ComponentProps<'textarea'>,
 		'className' | 'onClick' | 'ref' | 'onChange' | 'placeholder' | 'value' | 'id'
 	>
 }
@@ -39,7 +41,7 @@ export type TInputProps = {
  * 2. Add support falsy states for isPressed/isActive/isDisabled/isHovered/isFocused/isError.
  * - For example disable border changing on isPressed - false
  * */
-export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
+export const TextArea = forwardRef<HTMLTextAreaElement, TInputProps>((props, ref) => {
 	const {
 		className,
 		classNameWrap,
@@ -69,7 +71,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 	const [innerIsActive, setInnerIsActive] = useState(false)
 
 	const counterRef = useRef(0)
-	const inputRef = useRef<HTMLInputElement>(null)
+	const inputRef = useRef<HTMLTextAreaElement>(null)
 	const wrapperRef = useRef<HTMLDivElement>(null)
 	const combinedRef = useCombinedRef(ref, inputRef)
 	const inputGeneratedId = useId()
@@ -87,7 +89,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 		counterRef.current = valueForCount.length
 	}
 	// Handlers
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		if (!isDisabled) {
 			const value = e.target.value
 			setInnerIsActive(true)
@@ -148,9 +150,6 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 					aria-label={placeholder || 'Text input'}
 					onKeyDown={e => {
 						if (!isDisabled && inputRef.current) {
-							if (e.key === 'Enter') {
-								e.preventDefault()
-							}
 							inputRef.current.focus()
 						}
 					}}
@@ -170,13 +169,12 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 					)}
 					onClick={handleClick}
 				>
-					<input
+					<textarea
 						tabIndex={-1}
 						id={inputId}
 						spellCheck={false}
 						value={value ?? innerValue}
 						onChange={handleChange}
-						type="text"
 						ref={combinedRef}
 						className={cls.input}
 						placeholder={showPlacholder ? placeholder : ''}

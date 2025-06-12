@@ -1,19 +1,21 @@
 import clsx from 'clsx'
 import cls from './MetaInput.module.pcss'
 import { TInputProps } from '../Input/Input'
-import { PropsWithChildren, useRef } from 'react'
+import { PropsWithChildren } from 'react'
+import { TCountConfig } from '../model/types'
 
 type MetaInput = PropsWithChildren<
-	Pick<
+	{
+		count?: { currentValue?: number } & TCountConfig
+	} & Pick<
 		TInputProps,
-		'classNameWrap' | 'count' | 'iconHint' | 'labelText' | 'subLabelText' | 'hintText' | 'isError' | 'isSuccess'
+		'classNameWrap' | 'iconHint' | 'labelText' | 'subLabelText' | 'hintText' | 'isError' | 'isSuccess'
 	>
 >
 
 export const MetaInput = (props: MetaInput) => {
 	const { classNameWrap, iconHint, labelText, subLabelText, count, hintText, isError, isSuccess, children } = props
 
-	const counterRef = useRef(0)
 	const showHeader = Boolean(labelText || subLabelText || count)
 	const showFooter = Boolean(hintText || iconHint)
 	return (
@@ -26,7 +28,7 @@ export const MetaInput = (props: MetaInput) => {
 					</div>
 					{count && (
 						<span className={cls.word_counter}>
-							{counterRef.current}/{count.max}
+							{count.currentValue}/{count.max}
 						</span>
 					)}
 				</div>
