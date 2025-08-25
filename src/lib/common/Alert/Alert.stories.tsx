@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Alert } from './Alert'
-
+import Plus from '@/lib/assets/icons/monochrome/Plus.svg?react'
 const meta: Meta<typeof Alert> = {
 	component: Alert,
 	tags: ['autodocs'],
@@ -13,6 +13,13 @@ export const Primary: Story = {
 	args: {
 		title: 'MainTItle',
 		description: 'Its my description',
+	},
+}
+export const PrimaryWithCusomIcon: Story = {
+	args: {
+		title: 'MainTItle',
+		description: 'Its my description',
+		icon: <Plus />,
 	},
 }
 export const SafeOverflow: Story = {

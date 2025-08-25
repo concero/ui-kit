@@ -10,7 +10,7 @@ export type TButtonSize = 's' | 'm' | 'l' | 'xl'
 export type TButtonVariant = 'primary' | 'secondary_color' | 'secondary' | 'tetrary_color' | 'tetrary' | 'danger'
 type ButtonOrDiv = 'button' | 'div'
 
-interface IButtonProps {
+type IButtonProps = {
 	size?: TButtonSize
 	variant?: TButtonVariant
 	leftIcon?: ReactNode
@@ -35,7 +35,7 @@ interface IButtonProps {
 }
 export type TButtonProps = PropsWithChildren<IButtonProps>
 
-export const Button = forwardRef((props: TButtonProps, ref) => {
+export const Button = forwardRef<HTMLDivElement | HTMLButtonElement>((props: TButtonProps, ref) => {
 	const {
 		children,
 		className,

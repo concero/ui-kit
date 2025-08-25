@@ -1,5 +1,5 @@
 // TODO: Delete after 3 versions of showTrailIcon
-/* eslint-disable @typescript-eslint/no-deprecated */
+
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import Plus from '@/lib/assets/icons/monochrome/Plus.svg?react'
 import Refresh from '@/lib/assets/icons/monochrome/Refresh.svg?react'

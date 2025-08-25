@@ -1,18 +1,20 @@
 import clsx from 'clsx'
 import Bolt from '@/lib/assets/icons/monochrome/Bolt.svg?react'
 import cls from './Alert.module.pcss'
+import { ReactNode } from 'react'
 
 export type TAlertType = 'neutral' | 'warning' | 'negative' | 'positive' | 'branded'
 export type TAlertProps = {
 	type: TAlertType
 	title?: string
 	description?: string
+	icon?: ReactNode
 	className?: string
 	htmlDivProps?: Omit<React.ComponentProps<'div'>, 'className'>
 }
 type TClassname = string
 export const Alert = (props: TAlertProps) => {
-	const { type = 'branded', title, description, className, htmlDivProps } = props
+	const { type = 'branded', title, description, icon, className, htmlDivProps } = props
 
 	const typeMap: Record<TAlertType, TClassname> = {
 		branded: cls.branded,
@@ -24,7 +26,7 @@ export const Alert = (props: TAlertProps) => {
 	return (
 		<div className={clsx(cls.alert_body_wrap, typeMap[type], className)} {...htmlDivProps}>
 			<div>
-				<AlertIcon type={type} />
+				<AlertIcon type={type} icon={icon ?? <Bolt />} />
 			</div>
 			<div className={cls.alert_body}>
 				<span className={cls.title} title={title}>
@@ -36,8 +38,8 @@ export const Alert = (props: TAlertProps) => {
 	)
 }
 
-export const AlertIcon = (props: Pick<TAlertProps, 'type' | 'htmlDivProps' | 'className'>) => {
-	const { type = 'branded', className, htmlDivProps } = props
+export const AlertIcon = (props: Pick<TAlertProps, 'type' | 'icon' | 'className'>) => {
+	const { type = 'branded', icon, className } = props
 
 	const typeMap: Record<TAlertType, TClassname> = {
 		branded: cls.branded,
@@ -46,9 +48,5 @@ export const AlertIcon = (props: Pick<TAlertProps, 'type' | 'htmlDivProps' | 'cl
 		positive: cls.positive,
 		warning: cls.warning,
 	}
-	return (
-		<div className={clsx(cls.icon_wrap, typeMap[type], className)} {...htmlDivProps}>
-			<Bolt />
-		</div>
-	)
+	return <div className={clsx(cls.icon_wrap, typeMap[type], className)}>{icon}</div>
 }
