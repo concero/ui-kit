@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-deprecated */
 // TODO: Delete after 3 versions of showTrailIcon
 
 import type { Meta, StoryObj } from '@storybook/react-vite'

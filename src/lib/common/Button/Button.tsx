@@ -35,7 +35,7 @@ type IButtonProps = {
 }
 export type TButtonProps = PropsWithChildren<IButtonProps>
 
-export const Button = forwardRef<HTMLDivElement | HTMLButtonElement>((props: TButtonProps, ref) => {
+export const Button = forwardRef((props: TButtonProps, ref) => {
 	const {
 		children,
 		className,
