@@ -25,10 +25,10 @@ type TSolidProgressBarProps = {
 	tag?: TTagOptions
 }
 
-export type TProgressLineProps = ({} & TSolidProgressBarProps) | TSegmentedProgressBarProps
+export type TProgressLineProps = { isError?: boolean } & (TSolidProgressBarProps | TSegmentedProgressBarProps)
 
 export const ProgressLine = forwardRef<HTMLDivElement, TProgressLineProps>((props, ref) => {
-	const { className, value } = props
+	const { className, value, isError } = props
 
 	if (props.variant === 'segmented') {
 		const maxSegments = props.maxSegments ?? 10
@@ -47,7 +47,11 @@ export const ProgressLine = forwardRef<HTMLDivElement, TProgressLineProps>((prop
 					}
 				>
 					{Array.from({ length: maxSegments }).map((_, i) => (
-						<div key={i} className={`${cls._segment} `} data-active={i < active} />
+						<div
+							key={i}
+							className={clsx(cls._segment, { [cls.danger_line]: isError })}
+							data-active={!isError && i < active}
+						/>
 					))}
 				</div>
 			</div>
@@ -79,8 +83,8 @@ export const ProgressLine = forwardRef<HTMLDivElement, TProgressLineProps>((prop
 						{valueToShow}
 					</Tag>
 					<div
-						className={cls.track}
-						style={{ '--progress': `${safeValue}%` } as React.CSSProperties}
+						className={clsx(cls.track, { [cls.danger_line]: isError })}
+						style={{ '--progress': `${isError ? 0 : safeValue}%` } as React.CSSProperties}
 						ref={ref}
 					>
 						<div className={cls.fill} />
@@ -90,8 +94,8 @@ export const ProgressLine = forwardRef<HTMLDivElement, TProgressLineProps>((prop
 		}
 		return (
 			<div
-				className={clsx(cls.track, className)}
-				style={{ '--progress': `${safeValue}%` } as React.CSSProperties}
+				className={clsx(cls.track, { [cls.danger_line]: isError }, className)}
+				style={{ '--progress': `${isError ? 0 : safeValue}%` } as React.CSSProperties}
 				ref={ref}
 			>
 				<div className={cls.fill} />

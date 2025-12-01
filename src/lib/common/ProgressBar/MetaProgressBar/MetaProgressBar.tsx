@@ -43,7 +43,9 @@ export const MetaProgressBar = (props: TMetaProgressBarProps) => {
 			<VStack gap="space_0_5">
 				<HStack gap="8px" max>
 					<InfoIcon className={clsx(cls.error_description, cls.error_icon)} />
-					<Text variant="heading_small">{error.description ?? 'Error'}</Text>
+					<Text variant="heading_small" className={cls.error_description}>
+						{error.description ?? 'Error'}
+					</Text>
 				</HStack>
 			</VStack>
 		)
