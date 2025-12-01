@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import { HStack, VStack } from '../../Stack'
 import cls from './MetaProgressBar.module.pcss'
-import InfoIcon from '@/lib/assets/icons/monochrome/Info.svg?react'
+import InfoIcon from '@/lib/assets/icons/monochrome/info.svg?react'
 import clsx from 'clsx'
 import { Text } from '../../Text/Text'
 import { SkeletonLoader } from '../../SkeletonLoader/SkeletonLoader'
