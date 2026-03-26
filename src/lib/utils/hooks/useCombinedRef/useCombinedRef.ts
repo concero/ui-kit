@@ -1,6 +1,6 @@
 import { useCallback } from 'react'
 
-type CombinedRef<T> = ((instance: T | null) => void) | React.MutableRefObject<T | null> | null | undefined
+type CombinedRef<T> = ((instance: T | null) => void) | React.RefObject<T | null> | null | undefined
 
 /**
  * Used for combine refs

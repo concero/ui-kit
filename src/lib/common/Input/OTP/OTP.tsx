@@ -129,9 +129,9 @@ export const OTP = ({
 		}
 	}
 
-	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleInputChange = (event: React.InputEvent<HTMLInputElement>) => {
+		const value = event.currentTarget.value
 		const { nativeEvent } = event
-		const value = event.target.value
 
 		if (!isInputValueValid(value)) {
 			// Pasting from the native autofill suggestion on a mobile device can pass
@@ -145,7 +145,6 @@ export const OTP = ({
 				}
 			}
 
-			// @ts-expect-error - This was added previously to handle and edge case
 			// for dealing with keyCode "229 Unidentified" on Android. Check if this is
 			// still needed.
 			if (nativeEvent.data === null && nativeEvent.inputType === 'deleteContentBackward') {
@@ -156,7 +155,7 @@ export const OTP = ({
 
 			// Clear the input if it's not valid value because firefox allows
 			// pasting non-numeric characters in a number type input
-			event.target.value = ''
+			event.currentTarget.value = ''
 		}
 	}
 
@@ -221,6 +220,7 @@ export const OTP = ({
 							isDisabled={isDisabled}
 							value={getOTPValue()[index] ?? ''}
 							placeholder={getPlaceholderValue()?.[index] ?? undefined}
+							// @ts-expect-error TODO: Fix this type
 							ref={element => (inputRefs.current[index] = element)}
 							onChange={handleChange}
 							onClick={() => focusInput(index)}

@@ -5,6 +5,7 @@ import { StoryFn } from '@storybook/react-vite'
 export const StyleDecorator = (StoryComponent: StoryFn) => {
 	return (
 		<>
+			{/* @ts-expect-error TODO: Fix */}
 			<StoryComponent />
 		</>
 	)

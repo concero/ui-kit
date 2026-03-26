@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import cls from './Input.module.pcss'
-import { ComponentProps, forwardRef, ReactNode, useEffect, useId, useRef, useState } from 'react'
+import { ComponentProps, ReactNode, Ref, useEffect, useId, useRef, useState } from 'react'
 import { useCombinedRef } from '@/lib/utils/hooks/useCombinedRef/useCombinedRef'
 import { MetaInput } from '../MetaInput/MetaInput'
 import { TCountConfig } from '../model/types'
@@ -32,6 +32,7 @@ export type TInputProps = {
 		ComponentProps<'input'>,
 		'className' | 'onClick' | 'ref' | 'onChange' | 'placeholder' | 'value' | 'id'
 	>
+	ref?: Ref<HTMLInputElement>
 }
 /**
  * TODO:
@@ -39,7 +40,7 @@ export type TInputProps = {
  * 2. Add support falsy states for isPressed/isActive/isDisabled/isHovered/isFocused/isError.
  * - For example disable border changing on isPressed - false
  * */
-export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
+export const Input = (props: TInputProps) => {
 	const {
 		className,
 		classNameWrap,
@@ -62,6 +63,7 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 		isSuccess,
 		onClick,
 		inputProps,
+		ref,
 	} = props
 
 	//Inner states
@@ -187,4 +189,4 @@ export const Input = forwardRef<HTMLInputElement, TInputProps>((props, ref) => {
 			</MetaInput>
 		</div>
 	)
-})
+}

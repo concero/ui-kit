@@ -1,22 +1,22 @@
-/* eslint-disable @typescript-eslint/no-deprecated */
 import { StoryFn } from '@storybook/react-vite'
 import { ThemeProvider, useTheme } from '../common/Theme'
-import { useEffect, useState } from 'react'
+import { PropsWithChildren, useEffect, useState } from 'react'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const ThemeDecorator = (StoryComponent: StoryFn, context: any) => {
-	const themeName = context.globals.theme as 'light' | 'dark' | undefined
+	const themeName = context?.globals.theme as 'light' | 'dark' | undefined
 
 	return (
 		<ThemeProvider initialTheme={themeName ?? 'light'} storageSettings={{ persist: false }}>
 			<DynamicThemeSetter themeName={themeName}>
+				{/* @ts-expect-error TODO: Fix */}
 				<StoryComponent />
 			</DynamicThemeSetter>
 		</ThemeProvider>
 	)
 }
 
-const DynamicThemeSetter = ({ themeName, children }: { themeName?: 'light' | 'dark'; children: JSX.Element }) => {
+const DynamicThemeSetter = ({ themeName, children }: PropsWithChildren<{ themeName?: 'light' | 'dark' }>) => {
 	const [isReady, setIsReady] = useState(false)
 	const { setTheme } = useTheme()
 

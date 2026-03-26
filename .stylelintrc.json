@@ -1,5 +1,5 @@
 {
-	"extends": ["stylelint-config-prettier", "stylelint-config-recommended-scss"],
+	"extends": ["stylelint-config-recommended-scss"],
 	"rules": {
 		"at-rule-no-unknown": null,
 		"color-named": "never",
@@ -22,7 +22,6 @@
 			"height": ["rem", "%", "vh", "px"],
 			"width": ["rem", "%", "vw", "px"]
 		},
-		"max-empty-lines": 1,
 		"no-duplicate-selectors": true,
 		"selector-class-pattern": [
 			"^[a-z0-9]+(_[a-z0-9]+)*$",
@@ -32,7 +31,6 @@
 			}
 		],
 		"selector-max-id": [0],
-		"string-quotes": "single",
 		"value-no-vendor-prefix": true,
 		"font-family-no-missing-generic-family-keyword": null,
 		"no-descending-specificity": null,
