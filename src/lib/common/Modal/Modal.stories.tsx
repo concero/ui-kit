@@ -32,7 +32,6 @@ export const Headless: Story = {
 
 export const Toggle: Story = {
 	render: () => {
-		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const [isOpen, setIsOpen] = useState(false)
 
 		return (
@@ -60,7 +59,6 @@ export const Toggle: Story = {
 }
 export const ToggleOverflowY: Story = {
 	render: () => {
-		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const [isOpen, setIsOpen] = useState(false)
 
 		return (
@@ -88,7 +86,6 @@ export const ToggleOverflowY: Story = {
 }
 export const ToggleOverflowYPrepare: Story = {
 	render: () => {
-		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const [isOpen, setIsOpen] = useState(false)
 
 		return (
@@ -116,7 +113,6 @@ export const ToggleOverflowYPrepare: Story = {
 }
 export const PrimaryWithToggleWithUnmount: Story = {
 	render: () => {
-		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const [isOpen, setIsOpen] = useState(false)
 
 		return (
@@ -140,7 +136,6 @@ export const PrimaryWithToggleWithUnmount: Story = {
 }
 export const HeadlessWithToggle: Story = {
 	render: () => {
-		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const [isOpen, setIsOpen] = useState(false)
 
 		return (
