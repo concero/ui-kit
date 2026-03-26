@@ -99,6 +99,7 @@
 		]
 	},
 	"overrides": {
-		"storybook": "$storybook"
+		"storybook": "$storybook",
+		"typescript": "^6.0.2"
 	}
 }
